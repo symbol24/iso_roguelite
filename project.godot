@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="shmup_roguelite"
+config/name="isometric_roguelite"
 run/main_scene="uid://b0n4s1qyoj7iu"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
