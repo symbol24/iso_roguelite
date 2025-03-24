@@ -1,1 +1,1 @@
-# shmup_roguelite
+# isometric_roguelite
