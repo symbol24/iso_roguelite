@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cy78jms2us3jh"]
+
+[node name="HeroBaseAttackLine" type="Line2D"]
+points = PackedVector2Array(0, 0, 200, 0)
+width = 0.5
+default_color = Color(0.330156, 0.782115, 0.945592, 0.690196)

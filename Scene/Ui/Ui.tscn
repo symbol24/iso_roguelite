@@ -7,6 +7,7 @@
 script = ExtResource("1_p7mxi")
 
 [node name="LoadingScreen" type="Control" parent="."]
+visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
 anchors_preset = 0

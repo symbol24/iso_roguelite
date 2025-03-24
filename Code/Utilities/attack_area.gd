@@ -1,6 +1,9 @@
 class_name AttackArea extends Area2D
 
 
+const DESTROYTIME:float = 0.1
+
+
 var data:ActionData
 var active:bool = false
 var attack_owner:Node2D
@@ -21,6 +24,7 @@ func trigger() -> void:
 
 func get_damage() -> Damage:
 	var damage:Damage = Damage.new()
+	get_tree().create_timer(DESTROYTIME).timeout.connect(destroy_self)
 	return damage
 
 

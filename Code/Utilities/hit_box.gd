@@ -16,7 +16,6 @@ func _area_entered(area:Area2D) -> void:
 	if can_receive and area.has_method("get_damage"):
 		if parent.has_method("receive_damage"): 
 			parent.receive_damage(area.get_damage())
-			if area.has_method("destroy_self"): area.destroy_self()
 			_toggle_receive()
 
 

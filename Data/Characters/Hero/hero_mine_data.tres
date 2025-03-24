@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ProjectileShootData" load_steps=2 format=3 uid="uid://dho4s0nd0g1uo"]
+
+[ext_resource type="Script" uid="uid://04crric0ncu5" path="res://Code/Characters/Actions/Data/projectile_shoot_data.gd" id="1_1e7xi"]
+
+[resource]
+script = ExtResource("1_1e7xi")
+projectile_uid = "uid://cfhf8ij62i626"
+type = 2
+damage = 25.0
+count_per_attack = 1
+delay_between_proj = 0.1
+attack_speed = 1.0
+projectile_size = 0.0
+crit_chance = 0.0
+crit_damage = 0.0
+damage_type = 3
+sub_damage_types = Array[int]([])
+pierce_count = 1.0
+speed = 0.0
+life_time_distance = 0.0
+life_timer = 0.0
+reticle_distance = 60.0
+id = &"hero_mine_attack"
+input_name = &"shoulder_left"
+action_delay = 1.0
+unlocked_be_default = true
+metadata/_custom_type_script = "uid://04crric0ncu5"

@@ -1,0 +1,1 @@
+class_name HeroBaseAttack extends RaycastShoot

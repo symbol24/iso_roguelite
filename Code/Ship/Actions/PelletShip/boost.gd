@@ -1,4 +1,4 @@
-class_name Boost extends ShipAction
+class_name Boost extends CharacterAction
 
 
 var boosting:bool = false
@@ -52,8 +52,8 @@ func _boost(is_on:bool = false) -> void:
 	Signals.ActionToggled.emit(data.id, boosting)
 
 
-func _activate(_ship:Node2D) -> void:
-	ship = _ship
+func _activate(_character:Node2D) -> void:
+	character = _character
 	can_act = true
 	current_boost_time = data.max_boost_time
 	recharge_delay_timer = data.recharge_delay

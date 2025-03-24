@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=7 format=3 uid="uid://cyuqry7i86d8b"]
+
+[ext_resource type="Script" uid="uid://devwiswtyh440" path="res://Code/Characters/character_data.gd" id="1_u1m6d"]
+[ext_resource type="Script" uid="uid://bnrsqn211j27m" path="res://Code/Characters/Actions/Data/action_data.gd" id="1_wvv6n"]
+[ext_resource type="Resource" uid="uid://dho4s0nd0g1uo" path="res://Data/Characters/Hero/hero_mine_data.tres" id="2_aydwo"]
+[ext_resource type="Resource" uid="uid://djace4d6s41qi" path="res://Data/Characters/Hero/hero_rifle_shoot_data.tres" id="3_cxcpc"]
+[ext_resource type="Resource" uid="uid://bgppp4p6aec5v" path="res://Data/Characters/Hero/hero_shotgun_shoot_data.tres" id="4_p7drs"]
+[ext_resource type="Resource" uid="uid://bfb1o8oqll504" path="res://Data/Characters/Hero/hero_sprint_data.tres" id="5_b2a5n"]
+
+[resource]
+script = ExtResource("1_u1m6d")
+id = &"hero"
+character_uid = "uid://dvs3vkehe2j0f"
+unlocked_by_default = true
+base_hp = 100.0
+base_lives = 1
+base_speed = 50.0
+base_damp = 0.3
+base_acceleration = 600.0
+base_friction = 500.0
+base_armor = 0.0
+base_shield = 0.0
+base_crit_chance = 0.0
+base_crit_damage = 0.0
+base_physical_resistance = 0.0
+base_energy_resistance = 0.0
+base_plasma_resistance = 0.0
+base_explosive_resistance = 0.0
+all_actions = Array[ExtResource("1_wvv6n")]([ExtResource("2_aydwo"), ExtResource("3_cxcpc"), ExtResource("4_p7drs"), ExtResource("5_b2a5n")])
+all_character_upgrades = Array[Resource]([])
+small_icon_uid = "uid://bbois0lf5okub"
+large_icon_uid = "uid://bbois0lf5okub"
+loc_display_name = ""
+debug_display_name = "Hero"
+loc_description = ""
+debug_description = "He goes pew pew!"
+metadata/_custom_type_script = "uid://devwiswtyh440"

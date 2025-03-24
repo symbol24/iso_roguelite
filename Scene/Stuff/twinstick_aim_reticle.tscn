@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://sbfjvs8b24o2"]
 
-[ext_resource type="Texture2D" uid="uid://cq0kxeu7m4sxp" path="res://Textures/target_reticle.png" id="1_6dptd"]
+[ext_resource type="Texture2D" uid="uid://cen8n67gdss04" path="res://Textures/Ui/Reticles/Reticle10.png" id="1_6dptd"]
 
 [node name="TwinstickAimReticle" type="Sprite2D"]
 texture = ExtResource("1_6dptd")

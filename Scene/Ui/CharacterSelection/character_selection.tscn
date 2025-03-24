@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpgq745lcc7l3"]
+
+[ext_resource type="Script" uid="uid://vf7a4w1qmwee" path="res://Code/UI/CharacterSelection/character_selection.gd" id="1_3b0r5"]
+[ext_resource type="Resource" uid="uid://d2757723mme08" path="res://Data/Characters/characters.tres" id="2_qbs2l"]
+
+[node name="CharacterSelection" type="Node2D"]
+
+[node name="character_selection" type="Control" parent="."]
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_3b0r5")
+character_list = ExtResource("2_qbs2l")
+start_destination = &"test_level"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="character_selection"]
+custom_minimum_size = Vector2(310, 170)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 315.0
+offset_bottom = 175.0
+theme_override_constants/separation = 0
+
+[node name="character_panel" type="PanelContainer" parent="character_selection/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="character_selection/HBoxContainer/character_panel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="character_buttons_hbox" type="HBoxContainer" parent="character_selection/HBoxContainer/character_panel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="character_details" type="HBoxContainer" parent="character_selection/HBoxContainer/character_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="large_character_image" type="TextureRect" parent="character_selection/HBoxContainer/character_panel/VBoxContainer/character_details"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 0
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="character_selection/HBoxContainer/character_panel/VBoxContainer/character_details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="character_name_label" type="Label" parent="character_selection/HBoxContainer/character_panel/VBoxContainer/character_details/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "ship name here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="character_detail_rtl" type="RichTextLabel" parent="character_selection/HBoxContainer/character_panel/VBoxContainer/character_details/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 6
+bbcode_enabled = true
+text = "ship description goes here"
+
+[node name="spacer" type="Control" parent="character_selection/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="character_selection/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="difficulty_setting" type="VBoxContainer" parent="character_selection/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="diff_label" type="Label" parent="character_selection/HBoxContainer/VBoxContainer/difficulty_setting"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="character_selection/HBoxContainer/VBoxContainer/difficulty_setting"]
+layout_mode = 2
+max_value = 5.0
+value = 1.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="Control" type="Control" parent="character_selection/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="btn_start" type="Button" parent="character_selection/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"

@@ -1,6 +1,9 @@
 class_name ActionBox extends TextureProgressBar
 
 
+const DEFAULTICON:String = ""
+
+
 @export var id:StringName
 
 

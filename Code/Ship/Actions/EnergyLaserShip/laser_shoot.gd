@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 
 func _cycle_shoot() -> void:
 	cycling = true
-	Signals.ShipToggleRotation.emit(true)
+	Signals.ToggleRotation.emit(true)
 	for point in spawn_points:
 		_shoot_one_bullet(point.global_position)
 
@@ -36,9 +36,9 @@ func _release_shoot() -> void:
 	remove_child(laser)
 	cycling = false
 	shooting = false
-	delay_timer = data.action_delay / (data.proj_attack_speed + ship.data.attack_speed)
+	delay_timer = data.action_delay / (data.attack_speed + character.data.attack_speed)
 	timer_active = true
-	Signals.ShipToggleRotation.emit(false)
+	Signals.ToggleRotation.emit(false)
 
 
 func _shoot_one_bullet(pos:Vector2) -> void:
@@ -50,7 +50,7 @@ func _shoot_one_bullet(pos:Vector2) -> void:
 		
 	add_child(laser)
 	if not laser.is_node_ready(): await laser.ready
-	laser.setup_attack(data, ship, pos, 0.0)
+	laser.setup_attack(data, character, pos, 0.0)
 	var new_length:float = data.length
 	
 	laser.setup_length(new_length)

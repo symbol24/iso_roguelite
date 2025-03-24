@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="RaycastSootData" load_steps=2 format=3 uid="uid://bgppp4p6aec5v"]
+
+[ext_resource type="Script" uid="uid://dumr6brde6if2" path="res://Code/Characters/Actions/Data/raycast_shoot_data.gd" id="1_jnxe2"]
+
+[resource]
+script = ExtResource("1_jnxe2")
+projectile_uid = "uid://cy78jms2us3jh"
+type = 2
+damage = 5.0
+count_per_attack = 7
+delay_between_proj = 0.0
+attack_speed = 1.0
+projectile_size = 0.0
+crit_chance = 0.0
+crit_damage = 0.0
+damage_type = 0
+sub_damage_types = Array[int]([])
+pierce_count = 1.0
+speed = 0.0
+life_time_distance = 60.0
+life_timer = 0.2
+reticle_distance = 60.0
+id = &"hero_secondary_attack"
+input_name = &"trigger_left"
+action_delay = 5.0
+unlocked_be_default = true
+metadata/_custom_type_script = "uid://dumr6brde6if2"

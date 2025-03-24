@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyhs3gxheenpt"]
+
+[ext_resource type="Script" uid="uid://ciojp7vodiuu3" path="res://Code/UI/CharacterSelection/character_selection_button.gd" id="1_pa3f1"]
+
+[node name="character_selection_button" type="Control"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -300.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pa3f1")
+
+[node name="btn_character" type="TextureButton" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
