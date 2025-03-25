@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://bn7ci5var4qqe"]
+[gd_scene load_steps=4 format=4 uid="uid://bn7ci5var4qqe"]
 
 [ext_resource type="TileSet" uid="uid://bjke6unbk6v88" path="res://Data/Tilesets/red_iso_tilset.tres" id="1_6e4q7"]
-[ext_resource type="PackedScene" uid="uid://dvs3vkehe2j0f" path="res://Scene/Characters/character.tscn" id="2_6e4q7"]
-[ext_resource type="PackedScene" uid="uid://c7t5se1mt37bc" path="res://Scene/Stuff/target.tscn" id="2_usv2h"]
-[ext_resource type="Texture2D" uid="uid://cofovsps7kpug" path="res://Textures/Characters/Sci-fi hero 64x65.png" id="3_6e4q7"]
+[ext_resource type="PackedScene" uid="uid://djuavhso465ru" path="res://Scene/Characters/sword_hero.tscn" id="4_xmoga"]
+[ext_resource type="PackedScene" uid="uid://d1qua4xd73bsa" path="res://Scene/Enemies/Debug/enemy_auto_shooter.tscn" id="5_t5c8m"]
 
 [node name="TestLevel" type="Node2D" groups=["level"]]
 
@@ -18,15 +17,18 @@ tile_set = ExtResource("1_6e4q7")
 [node name="elements" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_6e4q7")
 
-[node name="Character" parent="." instance=ExtResource("2_6e4q7")]
-position = Vector2(163, 90)
+[node name="EnemyAutoShooter" parent="." instance=ExtResource("5_t5c8m")]
+position = Vector2(304, 91)
 debug_spawn = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(119, 133)
-texture = ExtResource("3_6e4q7")
-hframes = 12
-vframes = 19
+[node name="EnemyAutoShooter2" parent="." instance=ExtResource("5_t5c8m")]
+position = Vector2(304, 128)
+debug_spawn = true
 
-[node name="target" parent="." instance=ExtResource("2_usv2h")]
-position = Vector2(244, 133)
+[node name="EnemyAutoShooter3" parent="." instance=ExtResource("5_t5c8m")]
+position = Vector2(304, 165)
+debug_spawn = true
+
+[node name="SwordHero" parent="." instance=ExtResource("4_xmoga")]
+position = Vector2(155, 110)
+debug_spawn = true

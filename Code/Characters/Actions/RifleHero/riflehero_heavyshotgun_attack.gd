@@ -1,4 +1,4 @@
-class_name HeroShotgunAttack extends RaycastShoot
+class_name RifleHeroShotgunAttack extends RaycastShoot
 
 
 var is_up:bool = true
@@ -27,4 +27,5 @@ func _shoot_one_bullet(pos:Vector2) -> void:
 		
 		if last_hit != null:
 			if last_hit.has_method(&"receive_damage"):
+				print("hit")
 				last_hit.receive_damage(_get_damage())

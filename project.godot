@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Signals="*res://Code/Autoloads/signal_bus.gd"
 Enums="*res://Code/Autoloads/enums.gd"
 Audio="*res://addons/AudioBySymbol/Code/Autoloads/audio_autoload.gd"
+Data="*res://Code/Autoloads/data_constants.gd"
 
 [debug]
 
@@ -32,6 +33,7 @@ window/size/viewport_height=180
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 

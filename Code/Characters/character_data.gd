@@ -4,13 +4,13 @@ class_name CharacterData extends Resource
 @export var id:StringName = ""
 @export var character_uid:String
 @export var unlocked_by_default:bool = false
+@export var anim_for_direction:bool = true
 
 # Basics
 @export_category("Stats")
 @export var base_hp:float = 100.0
 @export var base_lives:int = 1
 @export var base_speed:float = 400.0
-@export var base_damp:float = 0.3
 @export var base_acceleration:float = 1100.0
 @export var base_friction:float = 100.0
 @export var base_armor:float = 0.0
@@ -53,8 +53,6 @@ var max_lives:int:
 # Movement
 var speed:float:
 	get: return base_speed + _get_value_from_meta_upgrades(&"speed") + _get_value_from_run_upgrades(&"speed")
-var dampening:float:
-	get: return base_damp + _get_value_from_meta_upgrades(&"dampening") + _get_value_from_run_upgrades(&"dampening")
 
 # Attack
 var damage:float:
@@ -73,6 +71,8 @@ var crit_damage:float:
 	get: return base_crit_damage + _get_value_from_meta_upgrades(&"crit_damage") + _get_value_from_run_upgrades(&"crit_damage")
 var projectile_peirce_count:float:
 	get: return _get_value_from_meta_upgrades(&"projectile_peirce_count") + _get_value_from_run_upgrades(&"projectile_peirce_count")
+var charges:int:
+	get: return _get_value_from_meta_upgrades(&"charges") + _get_value_from_run_upgrades(&"charges")
 
 # Defenses
 var current_armor:float

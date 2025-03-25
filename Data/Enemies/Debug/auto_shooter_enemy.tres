@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://ccyoht8pi562w"]
+
+[ext_resource type="Script" uid="uid://cfhj23ob8pxqw" path="res://Code/Enemies/enemy_data.gd" id="1_lms2i"]
+
+[resource]
+script = ExtResource("1_lms2i")
+id = &"auto_shooter_enemy"
+enemy_uid = "uid://d1qua4xd73bsa"
+base_hp = 100.0
+base_lives = 1
+base_speed = 0.0
+base_acceleration = 0.0
+base_friction = 0.0
+projectile_uid = "uid://t05dkhfi5y1a"
+attack_type = 0
+damage_type = 0
+sub_damabe_types = Array[int]([])
+count_per_attack = 1
+base_delay_between_attacks = 5.0
+base_delay_between_proj = 0.1
+base_damage = 5.0
+base_attack_speed = 0.05
+base_crit_chance = 0.0
+base_crit_damage = 0.0
+base_projectile_pierce = 1.0
+base_projectile_speed = 200.0
+projectile_speed_per_level = 20.0
+base_projectile_size = 0.0
+projectile_size_per_level = 0.05
+base_life_time_distance = 5e+06
+base_life_time = 0.0
+base_armor = 0.0
+base_shield = 0.0
+base_physical_resistance = 0.0
+base_energy_resistance = 0.0
+base_plasma_resistance = 0.0
+base_explosive_resistance = 0.0
+small_icon_uid = ""
+large_icon_uid = ""
+loc_display_name = ""
+debug_display_name = ""
+loc_description = ""
+debug_description = ""
+metadata/_custom_type_script = "uid://cfhj23ob8pxqw"

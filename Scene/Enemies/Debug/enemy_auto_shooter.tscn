@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1qua4xd73bsa"]
+
+[ext_resource type="Script" uid="uid://1numvft83013" path="res://Code/Enemies/Debug/enemy_auto_shooter.gd" id="1_chxnc"]
+[ext_resource type="Resource" uid="uid://ccyoht8pi562w" path="res://Data/Enemies/Debug/auto_shooter_enemy.tres" id="2_hy5kx"]
+[ext_resource type="Texture2D" uid="uid://dxd65ynm0v6js" path="res://Textures/Enemies/Archer spritesheet without shadow.png" id="2_kowkr"]
+[ext_resource type="Texture2D" uid="uid://dtjmckyguqjj4" path="res://Textures/Ui/enemy_hp_bar_back.png" id="3_dwssq"]
+[ext_resource type="Script" uid="uid://2chbv1gcgea1" path="res://Code/Utilities/hit_box.gd" id="3_lvn55"]
+[ext_resource type="Texture2D" uid="uid://dckx3b70gw8yo" path="res://Textures/Ui/enemy_hp_bar.png" id="4_1jyge"]
+[ext_resource type="Script" uid="uid://cxnn7hp5ualyo" path="res://Code/Enemies/Actions/auto_shoot_enemy_shoot.gd" id="7_1jyge"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hy5kx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvn55"]
+radius = 2.23607
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hy5kx"]
+radius = 3.0
+height = 12.0
+
+[node name="EnemyAutoShooter" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_chxnc")
+debug_data = ExtResource("2_hy5kx")
+metadata/_custom_type_script = "uid://dil60m7p2b1yx"
+
+[node name="damage_nmbr_point" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+
+[node name="animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="anim_tree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%anim_tree/..")
+tree_root = SubResource("AnimationNodeStateMachine_hy5kx")
+anim_player = NodePath("../animator")
+
+[node name="hp_bar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 2)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+offset_bottom = -10.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.001
+nine_patch_stretch = true
+texture_under = ExtResource("3_dwssq")
+texture_progress = ExtResource("4_1jyge")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_kowkr")
+hframes = 8
+vframes = 5
+
+[node name="move_collider" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_lvn55")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_lvn55")
+metadata/_custom_type_script = "uid://2chbv1gcgea1"
+
+[node name="hit_collider" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_hy5kx")
+
+[node name="AutoShootEnemyShoot" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("7_1jyge")
+spawn_points = [NodePath("Marker2D")]
+metadata/_custom_type_script = "uid://cxnn7hp5ualyo"
+
+[node name="Marker2D" type="Marker2D" parent="AutoShootEnemyShoot"]
+position = Vector2(-4, -2)

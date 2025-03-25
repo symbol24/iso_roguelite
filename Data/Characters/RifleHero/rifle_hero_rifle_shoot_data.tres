@@ -6,7 +6,7 @@
 script = ExtResource("1_cwv6i")
 projectile_uid = "uid://cy78jms2us3jh"
 type = 2
-damage = 1.0
+damage = 5.0
 count_per_attack = 1
 delay_between_proj = 0.1
 attack_speed = 1.0
@@ -24,4 +24,5 @@ id = &"hero_base_attack_data"
 input_name = &"trigger_right"
 action_delay = 0.3
 unlocked_be_default = true
+icon_uid = ""
 metadata/_custom_type_script = "uid://dumr6brde6if2"

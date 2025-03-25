@@ -1,11 +1,16 @@
-extends TwinStickAim
+class_name RifleHeroRifleAim extends TwinStickAim
 
 
 @export var raycast:RayCast2D
 
 
+func _ready() -> void:
+	super()
+	Signals.CharacterDeath.connect(_character_death)
+
+
 func _process(delta: float) -> void:
-	if can_act and ready_to_move: 
+	if can_act and ready_to_move and character.is_alive: 
 		if is_gamepad:
 			var aim_direction:Vector2 = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 			if aim_point_for_controller.position.x != data.reticle_distance: aim_point_for_controller.position.x = data.reticle_distance
@@ -23,3 +28,8 @@ func _process(delta: float) -> void:
 			look_at(reticle.global_position)
 	
 		if detecting_mouse_movement: mouse_move_detection_timer += delta
+
+
+func _character_death(_data:CharacterData) -> void:
+	if _data == character.data:
+		hide()

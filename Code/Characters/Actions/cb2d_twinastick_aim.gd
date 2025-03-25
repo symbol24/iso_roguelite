@@ -7,10 +7,6 @@ class_name CB2DTwinStickAim extends CharacterAction
 @onready var aim_point_for_controller: Marker2D = %aim_point_for_controller
 
 var reticle:Sprite2D
-var level:Node2D:
-	get:
-		if level == null: level = get_tree().get_first_node_in_group("level")
-		return level
 var ready_to_move:bool = false
 var pos:Vector2 = Vector2.ZERO
 var is_gamepad:bool = true

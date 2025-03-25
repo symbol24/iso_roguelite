@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdi3icregrobv"]
+[gd_scene load_steps=7 format=3 uid="uid://cdi3icregrobv"]
 
 [ext_resource type="Script" uid="uid://blv2dsrcq6sa6" path="res://Code/UI/PlayerUi/play_ui.gd" id="1_0slje"]
 [ext_resource type="Texture2D" uid="uid://ccec3h1qfhp3y" path="res://Textures/Ui/hp_bar_back.png" id="2_lj84j"]
 [ext_resource type="Texture2D" uid="uid://cmj7lm60u8ux0" path="res://Textures/Ui/hp_bar_outline.png" id="3_0ks1d"]
-[ext_resource type="Texture2D" uid="uid://co8hfr585prrs" path="res://Textures/Ui/hp_bar_fill.png" id="3_wjqms"]
+[ext_resource type="Texture2D" uid="uid://dhumlvpssx63h" path="res://Textures/Ui/hp_bar_fill_white.png" id="4_bppdo"]
+[ext_resource type="Texture2D" uid="uid://dtjmckyguqjj4" path="res://Textures/Ui/enemy_hp_bar_back.png" id="5_bppdo"]
+[ext_resource type="Texture2D" uid="uid://cn5q8epuuj0g7" path="res://Textures/Ui/temp_ability_icon.png" id="6_7mhas"]
 
 [node name="PlayUi" type="Control"]
 custom_minimum_size = Vector2(320, 180)
@@ -31,14 +33,58 @@ stretch_margin_right = 1
 stretch_margin_bottom = 1
 texture_under = ExtResource("2_lj84j")
 texture_over = ExtResource("3_0ks1d")
-texture_progress = ExtResource("3_wjqms")
+texture_progress = ExtResource("4_bppdo")
+tint_over = Color(1, 0.941176, 0.478431, 1)
+tint_progress = Color(0.184314, 0.854902, 0.564706, 1)
+
+[node name="armor_bar" type="TextureProgressBar" parent="hp_bar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(51, 9)
+layout_mode = 0
+offset_right = 51.0
+offset_bottom = 9.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+nine_patch_stretch = true
+texture_progress = ExtResource("4_bppdo")
+tint_progress = Color(0.74558, 0.74558, 0.74558, 1)
+
+[node name="shield_bar" type="TextureProgressBar" parent="hp_bar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(51, 9)
+layout_mode = 0
+offset_right = 51.0
+offset_bottom = 9.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+nine_patch_stretch = true
+stretch_margin_left = 1
+stretch_margin_top = 1
+stretch_margin_right = 1
+stretch_margin_bottom = 1
+texture_progress = ExtResource("3_0ks1d")
+tint_progress = Color(0, 0.807843, 1, 1)
 
 [node name="abilities_hbox" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
-offset_left = 92.5
-offset_top = 140.0
-offset_right = 227.5
-offset_bottom = 170.0
+offset_left = 112.5
+offset_top = 145.0
+offset_right = 207.5
+offset_bottom = 165.0
 theme_override_constants/separation = 5
+
+[node name="exp_bar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 3)
+layout_mode = 0
+offset_top = 176.0
+offset_right = 320.0
+offset_bottom = 180.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_bppdo")
+texture_progress = ExtResource("6_7mhas")

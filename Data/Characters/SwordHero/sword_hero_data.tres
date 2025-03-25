@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://bgutg1mu56vq1"]
+
+[ext_resource type="Script" uid="uid://bnrsqn211j27m" path="res://Code/Characters/Actions/Data/action_data.gd" id="1_dynm0"]
+[ext_resource type="Script" uid="uid://devwiswtyh440" path="res://Code/Characters/character_data.gd" id="2_o0upo"]
+
+[resource]
+script = ExtResource("2_o0upo")
+id = &"sword_hero"
+character_uid = "uid://djuavhso465ru"
+unlocked_by_default = true
+anim_for_direction = false
+base_hp = 120.0
+base_lives = 1
+base_speed = 60.0
+base_acceleration = 600.0
+base_friction = 500.0
+base_armor = 0.0
+base_shield = 0.0
+base_crit_chance = 0.0
+base_crit_damage = 0.0
+base_physical_resistance = 0.0
+base_energy_resistance = 0.0
+base_plasma_resistance = 0.0
+base_explosive_resistance = 0.0
+all_actions = Array[ExtResource("1_dynm0")]([])
+all_character_upgrades = Array[Resource]([])
+small_icon_uid = "uid://u3qjqybm2m0r"
+large_icon_uid = "uid://u3qjqybm2m0r"
+loc_display_name = ""
+debug_display_name = "Sword Hero"
+loc_description = ""
+debug_description = "Her swings his sword-sword..."
+metadata/_custom_type_script = "uid://devwiswtyh440"

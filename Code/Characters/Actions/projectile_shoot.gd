@@ -19,7 +19,7 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	super(delta)
-	if can_act and shooting and not cycling: _cycle_shoot()
+	if character.is_alive and can_act and shooting and current_charges > 0 and not cycling: _cycle_shoot()
 
 
 func _activate(_character:Node2D) -> void:
@@ -30,6 +30,7 @@ func _activate(_character:Node2D) -> void:
 
 func _cycle_shoot() -> void:
 	if not timer_active:
+		current_charges -= 1
 		delay_timer = data.action_delay / (data.attack_speed + character.data.attack_speed)
 		cycling = true
 		for i in data.count_per_attack:

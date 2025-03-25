@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://djuavhso465ru"]
+
+[ext_resource type="Script" uid="uid://qbwgtos367s" path="res://Code/Characters/character.gd" id="1_nrfoo"]
+[ext_resource type="Resource" uid="uid://bgutg1mu56vq1" path="res://Data/Characters/SwordHero/sword_hero_data.tres" id="2_ukg3s"]
+[ext_resource type="Texture2D" uid="uid://cofovsps7kpug" path="res://Textures/Characters/Sci-fi hero 64x65.png" id="2_xumum"]
+[ext_resource type="Script" uid="uid://2chbv1gcgea1" path="res://Code/Utilities/hit_box.gd" id="3_ukg3s"]
+[ext_resource type="Script" uid="uid://jfw6eicaqxfl" path="res://Code/Characters/Actions/character_body_move.gd" id="5_ukg3s"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ukg3s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukg3s"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukg3s"]
+radius = 3.0
+
+[node name="SwordHero" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_nrfoo")
+debug_data = ExtResource("2_ukg3s")
+metadata/_custom_type_script = "uid://qbwgtos367s"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="anim_tree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%anim_tree/..")
+tree_root = SubResource("AnimationNodeStateMachine_ukg3s")
+anim_player = NodePath("../animator")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(13, -2)
+texture = ExtResource("2_xumum")
+hframes = 13
+vframes = 19
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("3_ukg3s")
+metadata/_custom_type_script = "uid://2chbv1gcgea1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.5, 0)
+shape = SubResource("CapsuleShape2D_ukg3s")
+
+[node name="move_collider" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 5)
+shape = SubResource("CircleShape2D_ukg3s")
+
+[node name="damage_nmbr_point" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+
+[node name="CharacterBodyMove" type="Node2D" parent="."]
+script = ExtResource("5_ukg3s")
+metadata/_custom_type_script = "uid://jfw6eicaqxfl"

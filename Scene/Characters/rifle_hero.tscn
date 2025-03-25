@@ -1,19 +1,23 @@
-[gd_scene load_steps=41 format=3 uid="uid://dvs3vkehe2j0f"]
+[gd_scene load_steps=46 format=3 uid="uid://dvs3vkehe2j0f"]
 
-[ext_resource type="Script" uid="uid://qbwgtos367s" path="res://Code/Characters/character.gd" id="1_vyphu"]
-[ext_resource type="Script" uid="uid://jfw6eicaqxfl" path="res://Code/Characters/CB2D/character_body_move.gd" id="2_ikg3g"]
-[ext_resource type="Resource" uid="uid://cyuqry7i86d8b" path="res://Data/Characters/Hero/hero_data.tres" id="2_s0pos"]
-[ext_resource type="Texture2D" uid="uid://cy3dlrbee0v3e" path="res://Textures/Characters/Hero/Hero spritesheet BLUE without shadow.png" id="3_s0pos"]
-[ext_resource type="Script" uid="uid://els0buj4h547" path="res://Code/Characters/Actions/hero_aim.gd" id="5_6qyxf"]
-[ext_resource type="Texture2D" uid="uid://bp0dlapy1fohu" path="res://Textures/Characters/Hero/gun sprite BLUE.png" id="5_v7nxe"]
-[ext_resource type="Resource" uid="uid://bfb1o8oqll504" path="res://Data/Characters/Hero/hero_sprint_data.tres" id="5_y3syi"]
-[ext_resource type="Resource" uid="uid://djace4d6s41qi" path="res://Data/Characters/Hero/hero_rifle_shoot_data.tres" id="6_e4mme"]
-[ext_resource type="Script" uid="uid://damm8eukqucbq" path="res://Code/Characters/Actions/Hero/hero_rifle_attack.gd" id="8_6qyxf"]
-[ext_resource type="Script" uid="uid://c8f3w38xtn8s2" path="res://Code/Characters/Actions/Hero/hero_heavyshotgun_attack.gd" id="9_w2sx3"]
-[ext_resource type="Resource" uid="uid://bgppp4p6aec5v" path="res://Data/Characters/Hero/hero_shotgun_shoot_data.tres" id="10_jjbtn"]
-[ext_resource type="Script" uid="uid://8oam15xcqxtn" path="res://Code/Characters/Actions/projectile_shoot.gd" id="11_jjbtn"]
-[ext_resource type="Resource" uid="uid://dho4s0nd0g1uo" path="res://Data/Characters/Hero/hero_mine_data.tres" id="12_11l7e"]
-[ext_resource type="Script" uid="uid://8dm7out4apnk" path="res://Code/Ship/Actions/PelletShip/boost.gd" id="13_joa1k"]
+[ext_resource type="Script" uid="uid://qbwgtos367s" path="res://Code/Characters/character.gd" id="1_h0gwg"]
+[ext_resource type="Resource" uid="uid://cyuqry7i86d8b" path="res://Data/Characters/RifleHero/rifle_hero_data.tres" id="2_xal1p"]
+[ext_resource type="Texture2D" uid="uid://cy3dlrbee0v3e" path="res://Textures/Characters/Hero/Hero spritesheet BLUE without shadow.png" id="3_2gpgk"]
+[ext_resource type="Script" uid="uid://2chbv1gcgea1" path="res://Code/Utilities/hit_box.gd" id="4_17yd5"]
+[ext_resource type="Script" uid="uid://jfw6eicaqxfl" path="res://Code/Characters/Actions/character_body_move.gd" id="5_ggoky"]
+[ext_resource type="Resource" uid="uid://bfb1o8oqll504" path="res://Data/Characters/RifleHero/rifle_hero_sprint_data.tres" id="6_kucrr"]
+[ext_resource type="Script" uid="uid://els0buj4h547" path="res://Code/Characters/Actions/RifleHero/riflehero_aim.gd" id="7_7q7yr"]
+[ext_resource type="Resource" uid="uid://djace4d6s41qi" path="res://Data/Characters/RifleHero/rifle_hero_rifle_shoot_data.tres" id="8_4uspc"]
+[ext_resource type="Texture2D" uid="uid://bp0dlapy1fohu" path="res://Textures/Characters/Hero/gun sprite BLUE.png" id="9_3gsgc"]
+[ext_resource type="Script" uid="uid://damm8eukqucbq" path="res://Code/Characters/Actions/RifleHero/riflehero_rifle_attack.gd" id="10_sf0gk"]
+[ext_resource type="Script" uid="uid://c8f3w38xtn8s2" path="res://Code/Characters/Actions/RifleHero/riflehero_heavyshotgun_attack.gd" id="11_1sbsg"]
+[ext_resource type="Resource" uid="uid://bgppp4p6aec5v" path="res://Data/Characters/RifleHero/rifle_hero_shotgun_shoot_data.tres" id="12_38qt5"]
+[ext_resource type="Script" uid="uid://8oam15xcqxtn" path="res://Code/Characters/Actions/projectile_shoot.gd" id="13_xx16f"]
+[ext_resource type="Resource" uid="uid://dho4s0nd0g1uo" path="res://Data/Characters/RifleHero/rifle_hero_mine_data.tres" id="14_0bs5e"]
+[ext_resource type="Script" uid="uid://8dm7out4apnk" path="res://Code/Ship/Actions/PelletShip/boost.gd" id="15_omeh4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5vlk"]
+animation = &"death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7nxe"]
 animation = &"idle_left"
@@ -86,13 +90,23 @@ advance_condition = &"running"
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pintn"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8g6ls"]
+advance_mode = 2
+advance_condition = &"dead"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dcuu4"]
 states/Start/position = Vector2(118, 100)
+states/death/node = SubResource("AnimationNodeAnimation_d5vlk")
+states/death/position = Vector2(517, 225)
 states/idle_blend/node = SubResource("AnimationNodeBlendSpace1D_e4mme")
 states/idle_blend/position = Vector2(366, 100)
 states/running_blend/node = SubResource("AnimationNodeBlendSpace2D_d5vlk")
 states/running_blend/position = Vector2(674, 99)
-transitions = ["Start", "idle_blend", SubResource("AnimationNodeStateMachineTransition_jfjxe"), "idle_blend", "running_blend", SubResource("AnimationNodeStateMachineTransition_fdx3e"), "running_blend", "idle_blend", SubResource("AnimationNodeStateMachineTransition_jjcqu")]
+transitions = ["Start", "idle_blend", SubResource("AnimationNodeStateMachineTransition_jfjxe"), "idle_blend", "running_blend", SubResource("AnimationNodeStateMachineTransition_fdx3e"), "running_blend", "idle_blend", SubResource("AnimationNodeStateMachineTransition_jjcqu"), "idle_blend", "death", SubResource("AnimationNodeStateMachineTransition_pintn"), "running_blend", "death", SubResource("AnimationNodeStateMachineTransition_8g6ls")]
 graph_offset = Vector2(-145, -126)
 
 [sub_resource type="Animation" id="Animation_v7nxe"]
@@ -107,7 +121,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -171,7 +185,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -237,7 +251,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -303,7 +317,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -369,7 +383,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -435,7 +449,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -501,7 +515,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -567,7 +581,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_s0pos")]
+"values": [ExtResource("3_2gpgk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -630,22 +644,26 @@ _data = {
 &"run_up": SubResource("Animation_uuyh3")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jfjxe"]
+radius = 3.0
+height = 10.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0pos"]
 radius = 2.0
 
 [node name="Character" type="CharacterBody2D"]
+top_level = true
 collision_layer = 2
 motion_mode = 1
-script = ExtResource("1_vyphu")
-debug_data = ExtResource("2_s0pos")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_h0gwg")
+debug_data = ExtResource("2_xal1p")
 
 [node name="anim_tree" type="AnimationTree" parent="."]
 unique_name_in_owner = true
 root_node = NodePath("%anim_tree/..")
 tree_root = SubResource("AnimationNodeStateMachine_dcuu4")
 anim_player = NodePath("../animator")
+parameters/conditions/dead = false
 parameters/conditions/idle = false
 parameters/conditions/running = false
 parameters/idle_blend/blend_position = -0.202323
@@ -658,29 +676,43 @@ libraries = {
 }
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_s0pos")
+texture = ExtResource("3_2gpgk")
 hframes = 10
 vframes = 6
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("4_17yd5")
+metadata/_custom_type_script = "uid://2chbv1gcgea1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_jfjxe")
+
+[node name="damage_nmbr_point" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_s0pos")
 
 [node name="CharacterBodyMove" type="Node2D" parent="."]
-script = ExtResource("2_ikg3g")
-data = ExtResource("5_y3syi")
+script = ExtResource("5_ggoky")
+data = ExtResource("6_kucrr")
 metadata/_custom_type_script = "uid://jfw6eicaqxfl"
 
 [node name="main_gun" type="Node2D" parent="." node_paths=PackedStringArray("raycast")]
-script = ExtResource("5_6qyxf")
+script = ExtResource("7_7q7yr")
 raycast = NodePath("raycast")
 reticle_uid = "uid://sbfjvs8b24o2"
 mouse_move_detection_time = 0.2
-data = ExtResource("6_e4mme")
+data = ExtResource("8_4uspc")
 
 [node name="gun" type="Sprite2D" parent="main_gun"]
 position = Vector2(3, -1)
-texture = ExtResource("5_v7nxe")
+texture = ExtResource("9_3gsgc")
 centered = false
 
 [node name="spawn_point" type="Marker2D" parent="main_gun/gun"]
@@ -696,30 +728,31 @@ position = Vector2(15, 0)
 target_position = Vector2(50, 0)
 collision_mask = 9
 hit_from_inside = true
+collide_with_areas = true
 
 [node name="HeroRifleAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points")]
-script = ExtResource("8_6qyxf")
+script = ExtResource("10_sf0gk")
 raycast = NodePath("../main_gun/raycast")
 spawn_points = [NodePath("../main_gun/gun/spawn_point")]
-data = ExtResource("6_e4mme")
+data = ExtResource("8_4uspc")
 
 [node name="HeroShotgunAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points")]
-script = ExtResource("9_w2sx3")
+script = ExtResource("11_1sbsg")
 raycast = NodePath("../main_gun/raycast")
 spawn_points = [NodePath("../main_gun/gun/spawn_point")]
-data = ExtResource("10_jjbtn")
+data = ExtResource("12_38qt5")
 metadata/_custom_type_script = "uid://c8f3w38xtn8s2"
 
 [node name="HeroMine" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points")]
-script = ExtResource("11_jjbtn")
+script = ExtResource("13_xx16f")
 spawn_points = [NodePath("spawn_point")]
-data = ExtResource("12_11l7e")
+data = ExtResource("14_0bs5e")
 metadata/_custom_type_script = "uid://8oam15xcqxtn"
 
 [node name="spawn_point" type="Marker2D" parent="HeroMine"]
 position = Vector2(0, 9)
 
 [node name="HeroSprintData" type="Node2D" parent="."]
-script = ExtResource("13_joa1k")
-data = ExtResource("5_y3syi")
+script = ExtResource("15_omeh4")
+data = ExtResource("6_kucrr")
 metadata/_custom_type_script = "uid://8dm7out4apnk"

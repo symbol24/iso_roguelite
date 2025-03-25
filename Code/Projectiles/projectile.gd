@@ -47,7 +47,7 @@ func get_damage() -> Damage:
 	damage.value = (data.damage + attack_owner.data.damage) * cd
 	damage.type = data.damage_type
 	damage.sub_types = data.sub_damage_types.duplicate(true)
-	get_tree().create_timer(DESTROYTIME).timeout.connect(destroy_self)
+	get_tree().create_timer(Data.PROJECTILEDESTROYTIME).timeout.connect(destroy_self)
 	return damage
 
 

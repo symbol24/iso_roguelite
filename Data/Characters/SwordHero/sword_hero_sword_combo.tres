@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MeleeActionData" load_steps=2 format=3 uid="uid://efw6ybv0xgfk"]
+
+[ext_resource type="Script" uid="uid://c6pfsvx72h40e" path="res://Code/Characters/Actions/Data/melee_action_data.gd" id="1_upfp5"]
+
+[resource]
+script = ExtResource("1_upfp5")
+anim_names = Array[StringName]([&"attack1", &"attack1", &"attack2"])
+damages = Array[float]([10.0, 10.0, 15.0])
+crit_chance = 0.05
+crit_damage = 0.2
+damage_type = 0
+sub_damage_types = Array[int]([])
+id = &"sword_hero_melee_combo"
+input_name = &"trigger_right"
+action_delay = 0.1
+unlocked_be_default = true
+icon_uid = ""
+metadata/_custom_type_script = "uid://c6pfsvx72h40e"

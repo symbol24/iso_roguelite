@@ -18,7 +18,7 @@ func receive_damage(damage:Damage) -> void:
 	var value:float = damage.value
 	if value > current_hp: value = current_hp
 	current_hp -= value
-	Signals.DamageNumber.emit(damage, global_position)
+	Signals.SpawnDamageNumber.emit(damage, self)
 	if current_hp <= 0.0: _death_cycle()
 	
 	

@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if can_act:
+	if can_act and character.is_alive:
 		direction = Input.get_vector("left", "right", "up", "down")
 		#print(direction)
 		if character != null:
