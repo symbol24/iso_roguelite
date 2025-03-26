@@ -12,8 +12,13 @@ const DMG_NMBRS_TIME:float = 1.0
 const DMG_NMBRS_OFFSET:float = 5.0
 const DMG_NMBRS_WAIT:float = 0.05
 
-# Characters
+# UI
+const TEMPICON:String = "uid://cn5q8epuuj0g7"
+const TEMPFILL:String = "uid://wlgi0bk4igll"
+const RETICLESCENE:String = "uid://sbfjvs8b24o2"
 
+# Characters
+const MAXCOMBOWAITTIME:float = 5.0
 
 # Enemies
 const ENEMY_UPGRADE_PER_LEVEL:float = 0.1

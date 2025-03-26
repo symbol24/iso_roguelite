@@ -12,4 +12,7 @@ id = &"hero_sprint"
 input_name = &"shoulder_right"
 action_delay = 1.0
 unlocked_be_default = true
+base_charges = 1
+uses_charges = false
+icon_uid = ""
 metadata/_custom_type_script = "uid://cq6sf6lvb6e8h"

@@ -29,7 +29,6 @@ func _physics_process(_delta: float) -> void:
 func character_setup(new_data:CharacterData = null) -> void:
 	if new_data == null:
 		data = debug_data.duplicate()
-		print(data)
 		data.setup_data()
 		# TODO: Fix for selected actions
 		for action in data.all_actions:
@@ -40,12 +39,16 @@ func character_setup(new_data:CharacterData = null) -> void:
 		data = new_data
 
 
-func set_new_vel(new_vel:Vector2 = Vector2.ZERO, new_direction:Vector2 = Vector2.ZERO) -> void:
+func set_new_vel(new_vel:Vector2 = Vector2.ZERO) -> void:
 	if is_alive:
 		velocity = new_vel
-		if new_direction != Vector2.ZERO: last_direction = direction
-		direction = new_direction
-		if data.anim_for_direction: _set_animation_params()
+		
+
+
+func set_direction(new_direction:Vector2 = Vector2.ZERO) -> void:
+	if new_direction != Vector2.ZERO: last_direction = direction
+	direction = new_direction
+	_set_animation_params()
 
 
 func receive_damage(damage:Damage) -> void:
@@ -127,7 +130,7 @@ func _death() -> void:
 func _set_animation_params() -> void:
 	var running:bool = false
 	var idle:bool = true
-	if direction != Vector2.ZERO:
+	if velocity != Vector2.ZERO:
 		running = true
 		idle = false
 	

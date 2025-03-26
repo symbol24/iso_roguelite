@@ -24,5 +24,7 @@ id = &"hero_mine_attack"
 input_name = &"shoulder_left"
 action_delay = 9.0
 unlocked_be_default = true
+base_charges = 3
+uses_charges = true
 icon_uid = ""
 metadata/_custom_type_script = "uid://04crric0ncu5"

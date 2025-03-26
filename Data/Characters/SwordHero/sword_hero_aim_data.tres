@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TwinstickAimData" load_steps=2 format=3 uid="uid://iecf6f03tt5"]
+
+[ext_resource type="Script" uid="uid://w8iq12qfjuxq" path="res://Code/Characters/Actions/Data/twinstick_aim_data.gd" id="1_l8gai"]
+
+[resource]
+script = ExtResource("1_l8gai")
+reticle_distance = 60.0
+id = &"sword_hero_aim_data"
+input_name = &""
+action_delay = 1.0
+unlocked_be_default = true
+base_charges = 1
+uses_charges = false
+icon_uid = ""
+metadata/_custom_type_script = "uid://w8iq12qfjuxq"

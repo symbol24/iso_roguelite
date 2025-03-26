@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwkaxriwbkxdh"]
+
+[ext_resource type="Script" uid="uid://h3syceewdphi" path="res://Code/UI/PlayerUi/action_ui.gd" id="1_fcla7"]
+
+[node name="ActionBox" type="TextureProgressBar"]
+custom_minimum_size = Vector2(20, 20)
+max_value = 1.0
+step = 0.01
+fill_mode = 5
+script = ExtResource("1_fcla7")
+metadata/_custom_type_script = "uid://h3syceewdphi"
+
+[node name="charges" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 4
+text = "0"

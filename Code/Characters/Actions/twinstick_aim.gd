@@ -3,6 +3,7 @@ class_name TwinStickAim extends CharacterAction
 
 @export var reticle_uid:String
 @export var mouse_move_detection_time:float = 0.3
+@export var send_direction:bool = false
 
 @onready var aim_point_for_controller: Marker2D = %aim_point_for_controller
 
@@ -42,7 +43,7 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	super()
 	_spawn_reticle()
-	aim_point_for_controller.position = Vector2(sqrt(data.life_time_distance), 0)
+	aim_point_for_controller.position = Vector2(data.reticle_distance, 0)
 	
 	
 func _process(delta: float) -> void:
@@ -53,18 +54,20 @@ func _process(delta: float) -> void:
 			var target_angle:float = Vector2.RIGHT.angle_to(last_direction)
 			rotation = target_angle
 			last_direction = aim_direction
-			
+			if send_direction: character.set_direction(aim_direction)
 		else: 
 			pos = get_global_mouse_position()
 			reticle.global_position = pos
 			look_at(reticle.global_position)
+			if send_direction: character.set_direction((reticle.global_position - global_position).normalized())
 	
 		if detecting_mouse_movement: mouse_move_detection_timer += delta
 
 
 func _spawn_reticle() -> void:
 	if reticle == null:
-		reticle = load(reticle_uid).instantiate()
+		reticle = load(Data.RETICLESCENE).instantiate()
+		reticle.texture = load(reticle_uid) as CompressedTexture2D
 		level.add_child.call_deferred(reticle)
 		if not reticle.is_node_ready(): await reticle.ready
 		ready_to_move = true

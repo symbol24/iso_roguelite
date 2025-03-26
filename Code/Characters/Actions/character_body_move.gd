@@ -1,6 +1,8 @@
 class_name CharacterBodyMove extends CharacterAction
 
 
+@export var send_direction:bool = true
+
 var direction:Vector2 = Vector2.ZERO
 var boosting:bool = false
 
@@ -16,7 +18,8 @@ func _physics_process(delta: float) -> void:
 		#print(direction)
 		if character != null:
 			var vel:Vector2 = _get_velocity(direction, character.velocity, delta)
-			character.set_new_vel(vel, direction)
+			character.set_new_vel(vel)
+			if send_direction: character.set_direction(direction)
 
 
 func _get_velocity(_direction:Vector2, current:Vector2, delta:float) -> Vector2:

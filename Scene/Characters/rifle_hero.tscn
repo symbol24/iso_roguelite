@@ -651,7 +651,7 @@ height = 10.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0pos"]
 radius = 2.0
 
-[node name="Character" type="CharacterBody2D"]
+[node name="RifleHero" type="CharacterBody2D"]
 top_level = true
 collision_layer = 2
 motion_mode = 1
@@ -703,26 +703,26 @@ script = ExtResource("5_ggoky")
 data = ExtResource("6_kucrr")
 metadata/_custom_type_script = "uid://jfw6eicaqxfl"
 
-[node name="main_gun" type="Node2D" parent="." node_paths=PackedStringArray("raycast")]
+[node name="main_gun_aim" type="Node2D" parent="." node_paths=PackedStringArray("raycast")]
 script = ExtResource("7_7q7yr")
 raycast = NodePath("raycast")
-reticle_uid = "uid://sbfjvs8b24o2"
+reticle_uid = "uid://cen8n67gdss04"
 mouse_move_detection_time = 0.2
 data = ExtResource("8_4uspc")
 
-[node name="gun" type="Sprite2D" parent="main_gun"]
+[node name="gun" type="Sprite2D" parent="main_gun_aim"]
 position = Vector2(3, -1)
 texture = ExtResource("9_3gsgc")
 centered = false
 
-[node name="spawn_point" type="Marker2D" parent="main_gun/gun"]
+[node name="spawn_point" type="Marker2D" parent="main_gun_aim/gun"]
 position = Vector2(12, 1)
 
-[node name="aim_point_for_controller" type="Marker2D" parent="main_gun"]
+[node name="aim_point_for_controller" type="Marker2D" parent="main_gun_aim"]
 unique_name_in_owner = true
 position = Vector2(65, 0)
 
-[node name="raycast" type="RayCast2D" parent="main_gun"]
+[node name="raycast" type="RayCast2D" parent="main_gun_aim"]
 unique_name_in_owner = true
 position = Vector2(15, 0)
 target_position = Vector2(50, 0)
@@ -732,14 +732,14 @@ collide_with_areas = true
 
 [node name="HeroRifleAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points")]
 script = ExtResource("10_sf0gk")
-raycast = NodePath("../main_gun/raycast")
-spawn_points = [NodePath("../main_gun/gun/spawn_point")]
+raycast = NodePath("../main_gun_aim/raycast")
+spawn_points = [NodePath("../main_gun_aim/gun/spawn_point")]
 data = ExtResource("8_4uspc")
 
 [node name="HeroShotgunAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points")]
 script = ExtResource("11_1sbsg")
-raycast = NodePath("../main_gun/raycast")
-spawn_points = [NodePath("../main_gun/gun/spawn_point")]
+raycast = NodePath("../main_gun_aim/raycast")
+spawn_points = [NodePath("../main_gun_aim/gun/spawn_point")]
 data = ExtResource("12_38qt5")
 metadata/_custom_type_script = "uid://c8f3w38xtn8s2"
 

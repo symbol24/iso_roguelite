@@ -4,8 +4,13 @@
 
 [resource]
 script = ExtResource("1_upfp5")
-anim_names = Array[StringName]([&"attack1", &"attack1", &"attack2"])
-damages = Array[float]([10.0, 10.0, 15.0])
+attacks = Array[Dictionary]([{
+&"attack1": 5.0
+}, {
+&"attack1": 5.0
+}, {
+&"attack2": 15.0
+}])
 crit_chance = 0.05
 crit_damage = 0.2
 damage_type = 0
@@ -14,5 +19,7 @@ id = &"sword_hero_melee_combo"
 input_name = &"trigger_right"
 action_delay = 0.1
 unlocked_be_default = true
+base_charges = 1
+uses_charges = true
 icon_uid = ""
 metadata/_custom_type_script = "uid://c6pfsvx72h40e"

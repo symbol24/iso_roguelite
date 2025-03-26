@@ -4,6 +4,7 @@ class_name PlayUi extends Control
 const BOXSIZE:Vector2 = Vector2(20, 20)
 const TEMPICON:String = "uid://cn5q8epuuj0g7"
 const TEMPFILL:String = "uid://wlgi0bk4igll"
+const ACTIONBOX:PackedScene = preload("uid://dwkaxriwbkxdh")
 
 
 @onready var hp_bar: TextureProgressBar = %hp_bar
@@ -30,17 +31,11 @@ func set_player_ui(data:CharacterData) -> void:
 		if action == null:
 			print(input, " is missing from active actions in ", data.id)
 			continue
-		var action_box:ActionBox = ActionBox.new()
+		var action_box:ActionBox = ACTIONBOX.instantiate()
 		action_box.set_custom_minimum_size(BOXSIZE)
 		abilities_hbox.add_child(action_box)
 		if not action_box.is_node_ready(): await action_box.ready
-		action_box.size = BOXSIZE
-		action_box.id = action.id
-		if action.icon_uid != "": 
-			action_box.texture_under = load(action.icon_uid) as CompressedTexture2D
-		else: 
-			action_box.texture_under = load(TEMPICON) as CompressedTexture2D
-		action_box.texture_progress = load(TEMPFILL) as CompressedTexture2D
+		action_box.setup_box(action)
 		action_box.name = &"action_" + action.id
 	
 	_update_hp(data)
