@@ -20,3 +20,10 @@ enum Projectile_Type {
 						FLOATING = 1,
 						FIXED = 2,
 					}
+
+
+enum Positive_Effect {
+						HEAL = 0,
+						ARMOR = 1,
+						SHIELD = 2,
+					}

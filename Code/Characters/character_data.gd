@@ -44,8 +44,9 @@ var active_actions:Array[ActionData] = []
 # Getters
 # HP
 var current_hp:float
+var added_hp:float = 0.0
 var max_hp:float:
-	get: return base_hp + _get_value_from_meta_upgrades(&"hp") + _get_value_from_run_upgrades(&"hp")
+	get: return base_hp + added_hp + _get_value_from_meta_upgrades(&"hp") + _get_value_from_run_upgrades(&"hp")
 var current_lives:int
 var max_lives:int:
 	get: return base_lives + int(_get_value_from_meta_upgrades(&"lives")) + int(_get_value_from_run_upgrades(&"lives"))
@@ -76,11 +77,13 @@ var charges:int:
 
 # Defenses
 var current_armor:float
+var added_armor:float = 0.0
 var max_armor:float:
-	get: return base_armor + _get_value_from_meta_upgrades(&"armor") + _get_value_from_run_upgrades(&"armor")
+	get: return base_armor + added_armor + _get_value_from_meta_upgrades(&"armor") + _get_value_from_run_upgrades(&"armor")
 var current_shield:float
+var added_shield:float = 0.0
 var max_shield:float:
-	get: return base_shield + _get_value_from_meta_upgrades(&"shield") + _get_value_from_run_upgrades(&"shield")
+	get: return base_shield + added_shield + _get_value_from_meta_upgrades(&"shield") + _get_value_from_run_upgrades(&"shield")
 
 # Resistances
 var physical_resist:float:

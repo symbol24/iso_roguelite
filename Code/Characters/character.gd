@@ -3,6 +3,7 @@ class_name Character extends CharacterBody2D
 
 @export var debug_data:CharacterData
 @export var debug_spawn:bool = false
+@export var debug_signals:bool = false
 
 @onready var animator: AnimationPlayer = %animator
 @onready var anim_tree: AnimationTree = %anim_tree
@@ -14,6 +15,9 @@ var last_direction:Vector2 = Vector2.ZERO
 var actions:Array[CharacterAction] = []
 var is_alive:bool = true
 var hit_active:bool = false
+var running:bool = false
+var idle:bool = true
+var can_receive_new_vel:bool = true
 
 
 func _ready() -> void:
@@ -23,7 +27,16 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if is_alive: move_and_slide()
+	if is_alive: 
+		_set_animation_params()
+		move_and_slide()
+	
+	if debug_signals:
+		Signals.DebugCharacterInfo.emit(&"running", str(anim_tree.get("parameters/conditions/running")))
+		Signals.DebugCharacterInfo.emit(&"idle", str(anim_tree.get("parameters/conditions/idle")))
+		Signals.DebugCharacterInfo.emit(&"running_blend", str(anim_tree.get("parameters/running_blend/blend_position")))
+		Signals.DebugCharacterInfo.emit(&"idle_blend", str(anim_tree.get("parameters/idle_blend/blend_position")))
+		Signals.DebugCharacterInfo.emit(&"velocity", str(velocity))
 
 
 func character_setup(new_data:CharacterData = null) -> void:
@@ -40,15 +53,29 @@ func character_setup(new_data:CharacterData = null) -> void:
 
 
 func set_new_vel(new_vel:Vector2 = Vector2.ZERO) -> void:
-	if is_alive:
+	if is_alive and can_receive_new_vel:
 		velocity = new_vel
-		
+
+
+func override_velocity(new_vel:Vector2 = Vector2.ZERO) -> void:
+	if is_alive:
+		can_receive_new_vel = false
+		velocity = new_vel
+
+
+func reset_velocity() -> void:
+	velocity = Vector2.ZERO
+	can_receive_new_vel = true
+
+
+func set_anim_condition(run:bool = false) -> void:
+	running = run
+	idle = not running
 
 
 func set_direction(new_direction:Vector2 = Vector2.ZERO) -> void:
 	if new_direction != Vector2.ZERO: last_direction = direction
 	direction = new_direction
-	_set_animation_params()
 
 
 func receive_damage(damage:Damage) -> void:
@@ -107,6 +134,42 @@ func receive_damage(damage:Damage) -> void:
 		_check_death()
 
 
+func add_positive_effect(_type:Enums.Positive_Effect, value:float, is_additive:bool = false) -> void:
+	if is_additive:
+		match _type:
+			Enums.Positive_Effect.ARMOR:
+				data.added_armor += value
+				data.current_armor += value
+				if data.current_armor > data.max_armor: data.current_armor = data.max_armor
+			Enums.Positive_Effect.SHIELD:
+				data.added_shield += value
+				data.current_shield += value
+				if data.current_shield > data.max_shield: data.current_shield = data.max_shield
+			_:
+				data.added_hp += value
+				data.current_hp += value
+				if data.current_hp > data.max_hp: data.current_hp = data.max_hp
+	else:
+		
+		match _type:
+			Enums.Positive_Effect.ARMOR:
+				data.added_armor = value
+				if data.current_armor < value: data.current_armor = value
+				if data.current_armor > data.max_armor: data.current_armor = data.max_armor
+			Enums.Positive_Effect.SHIELD:
+				data.added_shield = value
+				if data.current_shield < value: data.current_shield = value
+				if data.current_shield > data.max_shield: data.current_shield = data.max_shield
+			_:
+				data.added_hp = value
+				if data.current_hp < value: data.current_hp = value
+				if data.current_hp > data.max_hp: data.current_hp = data.max_hp
+	
+	Signals.ShieldUpdated.emit(data)
+	Signals.HpUpdated.emit(data)
+	Signals.ArmorUpdated.emit(data)
+
+
 func _check_death() -> void:
 	if data.current_hp <= 0:
 		data.current_lives -= 1
@@ -127,13 +190,7 @@ func _death() -> void:
 	anim_tree.set("parameters/conditions/dead", true)
 
 
-func _set_animation_params() -> void:
-	var running:bool = false
-	var idle:bool = true
-	if velocity != Vector2.ZERO:
-		running = true
-		idle = false
-	
+func _set_animation_params() -> void:	
 	if running != anim_tree.get("parameters/conditions/running"): anim_tree.set("parameters/conditions/running", running)
 	if idle != anim_tree.get("parameters/conditions/idle"): anim_tree.set("parameters/conditions/idle", idle)
 	if last_direction.x != anim_tree.get("parameters/idle_blend/blend_position"): anim_tree.set("parameters/idle_blend/blend_position", last_direction.x)
@@ -156,3 +213,7 @@ func _hit_effect(shield_hit:bool, armor_hit:bool, hp_hit:bool) -> void:
 func _end_hit() -> void:
 	modulate = Color.WHITE
 	hit_active = false
+
+
+func _send_animation_signal(type:StringName, value) -> void:
+	Signals.AnimationSignal.emit(self, type, value)

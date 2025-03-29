@@ -3,11 +3,11 @@ class_name CharacterAction extends Node2D
 
 @export var data:ActionData
 
-var character:Node2D
+var character:Character
 var can_act:bool = false
 var timer_active:bool = false
 var delay_timer:float = 1.0
-var current_charges:int = 0:
+var current_charges:int = 1:
 	set(value):
 		current_charges = value
 		Signals.ActionChargesUpdate.emit(data.id, current_charges)
@@ -19,7 +19,7 @@ var level:Node2D:
 		return level
 var action_delay:float:
 	get:
-		return data.action_delay / (data.attack_speed + character.data.attack_speed)
+		return data.action_delay / (data.attack_speed + character.data.attack_speed) if data.get("attack_speed") else data.action_delay
 
 
 func _ready() -> void:
@@ -33,19 +33,21 @@ func _process(delta: float) -> void:
 func _activate(_character:Node2D) -> void:
 	character = _character
 	can_act = true
+	delay_timer = 0.0
 
 
 func _reduce_delay_timer(value:float = 0.0) -> void:
 	delay_timer -= value
 	delay_timer = max(0.0, delay_timer)
-	Signals.ActionTimer.emit(data.id, delay_timer, action_delay)
 	if delay_timer <= 0.0:
-		#can_act = true
-		current_charges += 1
-		if current_charges == max_charges:
-			can_act = true
-			timer_active = false
-		if current_charges < max_charges:
-			timer_active = true
-			delay_timer = action_delay
-		#delay_timer = snappedf(data.action_delay / 1 + character.data.attack_speed, 0.1)
+		if not data.uses_charges: can_act = true
+		else:
+			current_charges += 1
+			if current_charges == max_charges:
+				timer_active = false
+			if current_charges < max_charges:
+				timer_active = true
+				delay_timer = action_delay
+	if data.uses_charges and current_charges > 0:
+		can_act = true
+	Signals.ActionTimer.emit(data.id, delay_timer, action_delay)

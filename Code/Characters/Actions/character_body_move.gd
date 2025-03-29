@@ -15,11 +15,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if can_act and character.is_alive:
 		direction = Input.get_vector("left", "right", "up", "down")
-		#print(direction)
 		if character != null:
 			var vel:Vector2 = _get_velocity(direction, character.velocity, delta)
 			character.set_new_vel(vel)
+			character.set_anim_condition(direction != Vector2.ZERO)
 			if send_direction: character.set_direction(direction)
+
+
+func _process(_delta: float) -> void:
+	if character and character.debug_signals:
+		Signals.DebugCharacterInfo.emit(&"direction", str(direction))
+		Signals.DebugCharacterInfo.emit(&"is_runnning", str(direction != Vector2.ZERO))
 
 
 func _get_velocity(_direction:Vector2, current:Vector2, delta:float) -> Vector2:

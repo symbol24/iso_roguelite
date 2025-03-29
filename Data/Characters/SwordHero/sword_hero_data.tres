@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://bgutg1mu56vq1"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=7 format=3 uid="uid://bgutg1mu56vq1"]
 
 [ext_resource type="Script" uid="uid://bnrsqn211j27m" path="res://Code/Characters/Actions/Data/action_data.gd" id="1_dynm0"]
+[ext_resource type="Resource" uid="uid://efw6ybv0xgfk" path="res://Data/Characters/SwordHero/sword_hero_sword_combo.tres" id="2_nwys3"]
 [ext_resource type="Script" uid="uid://devwiswtyh440" path="res://Code/Characters/character_data.gd" id="2_o0upo"]
+[ext_resource type="Resource" uid="uid://bjy1hf6smono6" path="res://Data/Characters/SwordHero/sword_hero_dagger_throw.tres" id="3_nwys3"]
+[ext_resource type="Resource" uid="uid://cqwvyxj8ae7pg" path="res://Data/Characters/SwordHero/sword_hero_roll_data.tres" id="4_tb2wp"]
+[ext_resource type="Resource" uid="uid://dvti1ro1c3he1" path="res://Data/Characters/SwordHero/sword_hero_apply_armor_data.tres" id="5_th2nl"]
 
 [resource]
 script = ExtResource("2_o0upo")
@@ -22,7 +26,7 @@ base_physical_resistance = 0.0
 base_energy_resistance = 0.0
 base_plasma_resistance = 0.0
 base_explosive_resistance = 0.0
-all_actions = Array[ExtResource("1_dynm0")]([])
+all_actions = Array[ExtResource("1_dynm0")]([ExtResource("2_nwys3"), ExtResource("3_nwys3"), ExtResource("4_tb2wp"), ExtResource("5_th2nl")])
 all_character_upgrades = Array[Resource]([])
 small_icon_uid = "uid://u3qjqybm2m0r"
 large_icon_uid = "uid://u3qjqybm2m0r"

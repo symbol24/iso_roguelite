@@ -1,6 +1,7 @@
 class_name ProjectileShoot extends CharacterAction
 
 @export var spawn_points:Array[Marker2D]
+@export var rotation_node:Node2D
 
 var projectile:PackedScene
 var shooting:bool = false
@@ -62,7 +63,7 @@ func _shoot_one_bullet(pos:Vector2) -> void:
 	var new_proj:Projectile = projectile.instantiate()
 	level.add_child(new_proj)
 	if not new_proj.is_node_ready(): await new_proj.ready
-	new_proj.setup_attack(data, character, pos, character.rotation)
+	new_proj.setup_attack(data, character, pos, rotation_node.rotation)
 	new_proj.name = &"projectile_0"
 	new_proj.trigger()
 

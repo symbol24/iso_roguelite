@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ApplyEffectData" load_steps=2 format=3 uid="uid://dvti1ro1c3he1"]
+
+[ext_resource type="Script" uid="uid://b52dgwj0i0n2w" path="res://Code/Characters/Actions/Data/apply_effect_data.gd" id="1_2nqgc"]
+
+[resource]
+script = ExtResource("1_2nqgc")
+type = 1
+amount = 15.0
+is_additive = false
+vfx_uid = "uid://clngld2dpkbfv"
+id = &"sword_hero_apply_armor"
+input_name = &"shoulder_left"
+action_delay = 8.0
+unlocked_be_default = true
+base_charges = 1
+uses_charges = true
+icon_uid = ""
+metadata/_custom_type_script = "uid://b52dgwj0i0n2w"

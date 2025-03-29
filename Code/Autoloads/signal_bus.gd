@@ -23,6 +23,7 @@ signal HpUpdated(data:CharacterData)
 signal ArmorUpdated(data:CharacterData)
 signal ShieldUpdated(data:CharacterData)
 signal CharacterDeath(data:CharacterData)
+signal AnimationSignal(character:Character, type:StringName, value)
 
 # UI
 signal SpawnDamageNumber(damage:Damage, pos:Node2D)
@@ -36,3 +37,6 @@ signal CharacterSelectionBtnPressed(character_data:CharacterData)
 # Enemies
 signal EnemyDeath(enemy_data:EnemyData)
 signal EnemyReady(enemy:Enemy)
+
+# DEBUG
+signal DebugCharacterInfo(info:StringName, value:String)

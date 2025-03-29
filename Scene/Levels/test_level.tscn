@@ -32,3 +32,5 @@ debug_spawn = true
 [node name="SwordHero" parent="." instance=ExtResource("4_xmoga")]
 position = Vector2(140, 93)
 debug_spawn = true
+
+[node name="Camera2D" type="Camera2D" parent="SwordHero"]

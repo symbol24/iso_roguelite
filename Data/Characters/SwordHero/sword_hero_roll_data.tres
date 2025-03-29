@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MovementActionData" load_steps=2 format=3 uid="uid://cqwvyxj8ae7pg"]
+
+[ext_resource type="Script" uid="uid://c06viyq1a56kk" path="res://Code/Characters/Actions/Data/movement_action_data.gd" id="1_d3rjk"]
+
+[resource]
+script = ExtResource("1_d3rjk")
+animaton_name = &"roll"
+blend_name = &"roll"
+condition_name = &"roll"
+signal_name = &"roll_finished"
+distance = 100.0
+fixed_direction = true
+id = &"sword_hero_roll"
+input_name = &"shoulder_right"
+action_delay = 6.0
+unlocked_be_default = true
+base_charges = 1
+uses_charges = true
+icon_uid = ""
+metadata/_custom_type_script = "uid://c06viyq1a56kk"

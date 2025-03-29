@@ -52,7 +52,7 @@ func _update_armor(data:CharacterData) -> void:
 	if data.id == character_id:
 		if data.max_armor > 0.0:
 			armor_bar.show()
-			print("Armor: ", data.current_armor)
+			#print("Armor: ", data.current_armor)
 			armor_bar.value = data.current_armor / data.max_armor
 		else:
 			armor_bar.hide()
@@ -62,7 +62,7 @@ func _update_shield(data:CharacterData) -> void:
 	if data.id == character_id:
 		if data.max_shield > 0.0:
 			shield_bar.show()
-			print("Shield: ", data.current_shield)
+			#print("Shield: ", data.current_shield)
 			shield_bar.value = data.current_shield / data.max_shield
 		else:
 			shield_bar.hide()

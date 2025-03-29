@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ProjectileShootData" load_steps=2 format=3 uid="uid://bjy1hf6smono6"]
+
+[ext_resource type="Script" uid="uid://04crric0ncu5" path="res://Code/Characters/Actions/Data/projectile_shoot_data.gd" id="1_1xvvw"]
+
+[resource]
+script = ExtResource("1_1xvvw")
+projectile_uid = "uid://c1nmo4docgej2"
+type = 0
+damage = 5.0
+count_per_attack = 1
+delay_between_proj = 0.1
+attack_speed = 1.0
+projectile_size = 0.0
+crit_chance = 0.05
+crit_damage = 0.2
+damage_type = 0
+sub_damage_types = Array[int]([])
+pierce_count = 1.0
+speed = 200.0
+life_time_distance = 5000.0
+life_timer = 0.0
+reticle_distance = 60.0
+id = &"sword_hero_dagger_throw"
+input_name = &"trigger_left"
+action_delay = 5.0
+unlocked_be_default = true
+base_charges = 3
+uses_charges = true
+icon_uid = ""
+metadata/_custom_type_script = "uid://04crric0ncu5"

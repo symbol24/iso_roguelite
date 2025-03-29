@@ -730,29 +730,32 @@ collision_mask = 9
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="HeroRifleAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points")]
+[node name="HeroRifleAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points", "rotation_node")]
 script = ExtResource("10_sf0gk")
 raycast = NodePath("../main_gun_aim/raycast")
 spawn_points = [NodePath("../main_gun_aim/gun/spawn_point")]
+rotation_node = NodePath("..")
 data = ExtResource("8_4uspc")
 
-[node name="HeroShotgunAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points")]
+[node name="HeroShotgunAttack" type="Node2D" parent="." node_paths=PackedStringArray("raycast", "spawn_points", "rotation_node")]
 script = ExtResource("11_1sbsg")
 raycast = NodePath("../main_gun_aim/raycast")
 spawn_points = [NodePath("../main_gun_aim/gun/spawn_point")]
+rotation_node = NodePath("..")
 data = ExtResource("12_38qt5")
 metadata/_custom_type_script = "uid://c8f3w38xtn8s2"
 
-[node name="HeroMine" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points")]
+[node name="HeroMine" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points", "rotation_node")]
 script = ExtResource("13_xx16f")
 spawn_points = [NodePath("spawn_point")]
+rotation_node = NodePath(".")
 data = ExtResource("14_0bs5e")
 metadata/_custom_type_script = "uid://8oam15xcqxtn"
 
 [node name="spawn_point" type="Marker2D" parent="HeroMine"]
 position = Vector2(0, 9)
 
-[node name="HeroSprintData" type="Node2D" parent="."]
+[node name="HeroSprint" type="Node2D" parent="."]
 script = ExtResource("15_omeh4")
 data = ExtResource("6_kucrr")
 metadata/_custom_type_script = "uid://8dm7out4apnk"
