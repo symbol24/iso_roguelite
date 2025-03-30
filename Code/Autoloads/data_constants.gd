@@ -22,3 +22,6 @@ const MAXCOMBOWAITTIME:float = 5.0
 
 # Enemies
 const ENEMY_UPGRADE_PER_LEVEL:float = 0.1
+
+# Utilities
+const PLAY_CAMERA:String = "uid://i5vt62gg8io3"

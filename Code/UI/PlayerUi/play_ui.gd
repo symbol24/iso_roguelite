@@ -21,13 +21,15 @@ func _ready() -> void:
 	Signals.HpUpdated.connect(_update_hp)
 	Signals.ArmorUpdated.connect(_update_armor)
 	Signals.ShieldUpdated.connect(_update_shield)
+	Signals.DisplayLevelIntro.connect(_display_level_intro)
+	Signals.DisplayObjective.connect(_display_objective)
 
 
 func set_player_ui(data:CharacterData) -> void:
 	character_id = data.id
 	var gamepad_buttons:Array[StringName] = [&"trigger_right", &"trigger_left", &"shoulder_right", &"shoulder_left"]
 	for input in gamepad_buttons:
-		var action:ActionData = _get_action_from_input(input, data.active_actions)
+		var action:ActionData = _get_action_from_input(input, data.all_actions)
 		if action == null:
 			print(input, " is missing from active actions in ", data.id)
 			continue
@@ -41,6 +43,8 @@ func set_player_ui(data:CharacterData) -> void:
 	_update_hp(data)
 	_update_armor(data)
 	_update_shield(data)
+	
+	Signals.UpdateRunState.emit(&"play_ui_done")
 
 
 func _update_hp(data:CharacterData) -> void:
@@ -73,3 +77,14 @@ func _get_action_from_input(_input_name:StringName, _actions:Array[ActionData]) 
 		if each.input_name == _input_name:
 			return each
 	return null
+
+
+func _display_level_intro() -> void:
+	print("Displaying level intro")
+	Signals.UpdateRunState.emit(&"intro_displayed")
+
+
+func _display_objective() -> void:
+	print("Objective goes here")
+	Signals.UpdateRunState.emit(&"objective_displayed")
+	

@@ -54,6 +54,7 @@ folder_colors={
 play_camera=""
 level=""
 Manager=""
+character_spawn_point=""
 
 [input]
 

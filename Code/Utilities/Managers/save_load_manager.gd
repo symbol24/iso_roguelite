@@ -10,12 +10,17 @@ var all_saves:Array[PlayerData] = []
 
 
 func _ready() -> void:
+	Signals.SetCharacter.connect(_set_character)
 	if _check_folder():
 		all_saves = _load_save_files()
 		if all_saves.is_empty():
 			_create_save_file(&"test_file")
 		else:
 			_load_for_id(&"test_file")
+
+
+func get_selected_character() -> StringName:
+	return current_save.current_character
 
 
 func _load_save_files() -> Array[PlayerData]:
@@ -69,3 +74,7 @@ func _create_save_file(_id:StringName) -> void:
 			all_saves.append(new_save)
 		else:
 			print("Error opening save folder while creating save file.")
+
+
+func _set_character(id:StringName) -> void:
+	current_save.set_current_character(id)

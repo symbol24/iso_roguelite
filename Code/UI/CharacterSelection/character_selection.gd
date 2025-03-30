@@ -16,7 +16,7 @@ const BUTTON:PackedScene = preload("uid://cyhs3gxheenpt")
 
 var manager:MangerManager:
 	get:
-		if manager == null: manager = get_tree().get_first_node_in_group("Manager")
+		if manager == null: manager = get_tree().get_first_node_in_group(&"Manager")
 		if manager == null: print("Manager is null.")
 		return manager
 
@@ -29,6 +29,7 @@ func _ready() -> void:
 	btn_start.pressed.connect(_btn_start_pressed)
 	_build_selection_buttons()
 	_select_first_available_button()
+	Signals.ToggleLoadingScreen.emit(false)
 
 
 func _select_character(character_data:CharacterData) -> void:
@@ -52,9 +53,8 @@ func _build_selection_buttons() -> void:
 
 
 func _btn_start_pressed() -> void:
-	if manager != null:
-		manager.save_load.current_save.set_current_character(selected_character.id)
-		Signals.LoadScene.emit(start_destination, display_loading_on_start)
+	Signals.SetCharacter.emit(selected_character.id)
+	Signals.LoadScene.emit(start_destination, display_loading_on_start)
 
 
 func _select_first_available_button() -> void:

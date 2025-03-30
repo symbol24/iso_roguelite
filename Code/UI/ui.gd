@@ -30,6 +30,7 @@ func _load_ui(ui_name:StringName, _additional_info) -> void:
 			debug_ui = load(DEBUGUI).instantiate()
 			add_child(debug_ui)
 			if not debug_ui.is_node_ready(): await debug_ui.ready
+			debug_ui.hide()
 		_:
 			pass
 		

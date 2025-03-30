@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bofyhb5fhgtkq"]
+[gd_scene load_steps=8 format=3 uid="uid://bofyhb5fhgtkq"]
 
 [ext_resource type="Script" uid="uid://b0lr51a4prlt2" path="res://Code/Utilities/Managers/scene_manager.gd" id="1_rhaqu"]
-[ext_resource type="Script" uid="uid://dbc4w35sfvyun" path="res://Code/Utilities/levels_to_load_data.gd" id="2_ix3w6"]
+[ext_resource type="Script" uid="uid://dbc4w35sfvyun" path="res://Code/Levels/levels_to_load_data.gd" id="2_ix3w6"]
+[ext_resource type="Script" uid="uid://wydjkhj45ted" path="res://Code/Levels/level_data.gd" id="2_qc84i"]
+[ext_resource type="Resource" uid="uid://b4awyeybijauw" path="res://Data/Levels/main_menu.tres" id="3_0ir0k"]
+[ext_resource type="Resource" uid="uid://chhgvb4rpx3n2" path="res://Data/Levels/character_selection.tres" id="4_hpiph"]
+[ext_resource type="Resource" uid="uid://beab2jxub4d57" path="res://Data/Levels/test_level.tres" id="5_1wpe4"]
 
 [sub_resource type="Resource" id="Resource_h2nef"]
 script = ExtResource("2_ix3w6")
-levels = Dictionary[StringName, String]({
-&"main_menu": "uid://dfnn7iuty8htv",
-&"ship_selection": "uid://dpgq745lcc7l3",
-&"test_level": "uid://bn7ci5var4qqe"
+levels = Dictionary[StringName, ExtResource("2_qc84i")]({
+&"character_selection": ExtResource("4_hpiph"),
+&"main_menu": ExtResource("3_0ir0k"),
+&"test_level": ExtResource("5_1wpe4")
 })
 metadata/_custom_type_script = "uid://dbc4w35sfvyun"
 

@@ -27,3 +27,14 @@ enum Positive_Effect {
 						ARMOR = 1,
 						SHIELD = 2,
 					}
+
+
+enum LevelState {
+					SPAWNINGCHESTS = 0,
+					LEVELINTRO = 1,
+					SPAWNINGPLAYERS = 2,
+					NORMALGAMEPLAY = 3,
+					OBJECTIVECOMPLETE = 4,
+					BOSSDEFEATED = 5,
+					UNLOAD = 6,
+				}

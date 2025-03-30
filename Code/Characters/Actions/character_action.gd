@@ -12,10 +12,10 @@ var current_charges:int = 1:
 		current_charges = value
 		Signals.ActionChargesUpdate.emit(data.id, current_charges)
 var max_charges:int:
-	get: return data.base_charges + character.data.charges
+	get: return data.base_charges + character.data.charges if data else 1
 var level:Node2D:
 	get:
-		if level == null: level = get_tree().get_first_node_in_group("level")
+		if level == null: level = get_tree().get_first_node_in_group(&"level")
 		return level
 var action_delay:float:
 	get:

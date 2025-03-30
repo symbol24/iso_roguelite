@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ch28ghnu074"]
+
+[ext_resource type="Script" uid="uid://bf3ine1jf2041" path="res://Code/Utilities/Managers/run_manager.gd" id="1_x65qr"]
+[ext_resource type="Resource" uid="uid://d2757723mme08" path="res://Data/Characters/characters.tres" id="2_bg888"]
+
+[node name="RunManager" type="Node2D"]
+script = ExtResource("1_x65qr")
+all_characters = ExtResource("2_bg888")
+metadata/_custom_type_script = "uid://bf3ine1jf2041"

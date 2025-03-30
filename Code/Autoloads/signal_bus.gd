@@ -7,6 +7,11 @@ signal ManagerLoaded(id:StringName)
 signal LoadScene(id:StringName, display_loading_screen:bool)
 signal SceneLoaded(id:StringName)
 signal Save()
+signal SetCharacter(id:StringName)
+signal SpawnCharacter(data:CharacterData)
+signal SpawnChests()
+signal UpdateRunState(message:StringName)
+signal SpawnCamera()
 
 # Levels
 signal LevelReady(id:StringName)
@@ -30,6 +35,8 @@ signal SpawnDamageNumber(damage:Damage, pos:Node2D)
 signal ToggleLoadingScreen(toggle:bool)
 signal LoadUi(ui_name:StringName, _additional_info)
 signal DmgNbrTreeExit(dmg_nbr:DamageNumber)
+signal DisplayLevelIntro()
+signal DisplayObjective() # needs data
 
 # CharacterSelection
 signal CharacterSelectionBtnPressed(character_data:CharacterData)

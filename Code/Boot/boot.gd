@@ -19,6 +19,9 @@ func _loades_manager(id:StringName) -> void:
 			Signals.LoadManager.emit(&"UI")
 		&"UI":
 			print("UI Canvas loaded")
+			Signals.LoadManager.emit(&"run_manager")
+		&"run_manager":
+			print("Run Manager loaded")
 			Signals.LoadManager.emit(&"scene_manager")
 		&"scene_manager":
 			print("Scene Manager loaded")

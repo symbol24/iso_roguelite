@@ -7,7 +7,7 @@ var timer_active:bool = false
 var delay_timer:float = 1.0
 var level:Node2D:
 	get:
-		if level == null: level = get_tree().get_first_node_in_group("level")
+		if level == null: level = get_tree().get_first_node_in_group(&"level")
 		return level
 var data:EnemyData:
 	get:

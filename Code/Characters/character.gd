@@ -23,7 +23,10 @@ var can_receive_new_vel:bool = true
 func _ready() -> void:
 	if debug_spawn:
 		if data == null: character_setup()
-	Signals.CharacterReady.emit(self)
+	var play_camera = get_tree().get_first_node_in_group(&"play_camera") as Camera2D
+	play_camera.get_parent().remove_child(play_camera)
+	add_child(play_camera)
+	play_camera.position = Vector2.ZERO
 
 
 func _physics_process(_delta: float) -> void:
@@ -42,14 +45,17 @@ func _physics_process(_delta: float) -> void:
 func character_setup(new_data:CharacterData = null) -> void:
 	if new_data == null:
 		data = debug_data.duplicate()
-		data.setup_data()
-		# TODO: Fix for selected actions
-		for action in data.all_actions:
-			if action.unlocked_be_default:
-				data.active_actions.append(action)
-		Signals.LoadUi.emit(&"play_ui", data)
 	else:
 		data = new_data
+	
+	data.setup_data()
+	Signals.HpUpdated.emit(data)
+	Signals.ArmorUpdated.emit(data)
+	Signals.ShieldUpdated.emit(data)
+	for action in data.all_actions:
+		if action.unlocked_be_default:
+			data.active_actions.append(action)
+	Signals.CharacterReady.emit(self)
 
 
 func set_new_vel(new_vel:Vector2 = Vector2.ZERO) -> void:

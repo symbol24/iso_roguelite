@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 func _load_scene(scene_name:StringName, _dispay_loading_screen:bool = false) -> void:
 	if not loading:
 		Signals.ToggleLoadingScreen.emit(_dispay_loading_screen)
-		to_load = levels.get_scene_uid(scene_name)
+		to_load = levels.get_scene_uid(scene_name).uid
 		if to_load != "":
 			ResourceLoader.load_threaded_request(to_load)
 			loading = true
@@ -45,5 +45,5 @@ func _complete_load() -> void:
 	get_tree().root.add_child.call_deferred(active_level)
 	if not active_level.is_node_ready(): await active_level.ready
 	
-	Signals.ToggleLoadingScreen.emit(false)
+	#Signals.ToggleLoadingScreen.emit(false)
 	
