@@ -13,6 +13,7 @@ signal SpawnChests()
 signal SpawnObjectiveElements(objective:StringName)
 signal UpdateRunState(message:StringName)
 signal SpawnCamera()
+signal ToggleCanPause(value:bool)
 
 # Levels
 signal LevelReady(id:StringName)
@@ -38,6 +39,7 @@ signal LoadUi(ui_name:StringName, _additional_info)
 signal DmgNbrTreeExit(dmg_nbr:DamageNumber)
 signal DisplayLevelIntro(data:LevelData)
 signal DisplayObjective() # needs data
+signal ToggleUi(ui_name:StringName, display:bool)
 
 # CharacterSelection
 signal CharacterSelectionBtnPressed(character_data:CharacterData)

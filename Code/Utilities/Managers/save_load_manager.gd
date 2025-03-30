@@ -10,6 +10,7 @@ var all_saves:Array[PlayerData] = []
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	Signals.SetCharacter.connect(_set_character)
 	if _check_folder():
 		all_saves = _load_save_files()

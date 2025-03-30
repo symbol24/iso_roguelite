@@ -5,6 +5,7 @@ class_name Level extends Node2D
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_PAUSABLE
 	Signals.ManagerLoaded.connect(_manager_check)
 	Signals.LoadManager.emit(&"spawn_manager")
 

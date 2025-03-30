@@ -22,6 +22,7 @@ var loading:bool = false
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	Signals.LoadManager.connect(_load_manager)
 
 

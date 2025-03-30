@@ -9,6 +9,7 @@ var character:Character = null
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	Signals.SpawnCamera.connect(_spawn_camera)
 	Signals.SpawnCharacter.connect(_spawn_character)
 	Signals.SpawnChests.connect(_spawn_chests)

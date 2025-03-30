@@ -21,6 +21,7 @@ var can_receive_new_vel:bool = true
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_PAUSABLE
 	if debug_spawn:
 		if data == null: character_setup()
 	var play_camera = get_tree().get_first_node_in_group(&"play_camera") as Camera2D

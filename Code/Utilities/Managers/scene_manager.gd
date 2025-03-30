@@ -10,6 +10,7 @@ var loading:bool = false
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	Signals.LoadScene.connect(_load_scene)
 
 

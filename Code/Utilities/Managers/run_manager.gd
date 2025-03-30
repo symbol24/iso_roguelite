@@ -13,10 +13,24 @@ var level:Node2D:
 		return level
 var current_level_state:Enums.LevelState = Enums.LevelState.SPAWNINGCHESTS
 var current_objective
+var can_pause:bool = false
+
+
+func _input(event: InputEvent) -> void:
+	if can_pause:
+		if event.is_action_pressed(&"pause"):
+			if get_tree().paused:
+				Signals.ToggleUi.emit(&"pause_menu", false)
+				get_tree().paused = false
+			else:
+				Signals.ToggleUi.emit(&"pause_menu", true)
+				get_tree().paused = true
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	Signals.UpdateRunState.connect(_go_to_next_state)
+	Signals.ToggleCanPause.connect(_toggle_can_pause)
 
 
 func _go_to_next_state(message:StringName) -> void:
@@ -41,6 +55,15 @@ func _go_to_next_state(message:StringName) -> void:
 			Signals.DisplayObjective.emit() # needs current_objective data
 		&"objective_displayed":
 			print("Objective displayed")
+			_toggle_can_pause(true)
+		&"run_ended_failure":
+			print("Run ended in fail")
+			_toggle_can_pause(false)
+			# display run fail screen
+		&"run_ended_success":
+			print("Run ended in success")
+			_toggle_can_pause(false)
+			# display run success screen
 		_:
 			pass
 
@@ -62,3 +85,7 @@ func _get_data_from_id(_character_id:StringName) -> CharacterData:
 func _select_objective() -> void:
 	# Select through data resource
 	Signals.SpawnObjectiveElements.emit(&"tbd")
+
+
+func _toggle_can_pause(value:bool) -> void:
+	can_pause = value
