@@ -10,6 +10,7 @@ signal Save()
 signal SetCharacter(id:StringName)
 signal SpawnCharacter(data:CharacterData)
 signal SpawnChests()
+signal SpawnObjectiveElements(objective:StringName)
 signal UpdateRunState(message:StringName)
 signal SpawnCamera()
 
@@ -35,7 +36,7 @@ signal SpawnDamageNumber(damage:Damage, pos:Node2D)
 signal ToggleLoadingScreen(toggle:bool)
 signal LoadUi(ui_name:StringName, _additional_info)
 signal DmgNbrTreeExit(dmg_nbr:DamageNumber)
-signal DisplayLevelIntro()
+signal DisplayLevelIntro(data:LevelData)
 signal DisplayObjective() # needs data
 
 # CharacterSelection

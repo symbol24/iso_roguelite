@@ -12,6 +12,7 @@ var level:Node2D:
 		if level == null: level = get_tree().get_first_node_in_group(&"level")
 		return level
 var current_level_state:Enums.LevelState = Enums.LevelState.SPAWNINGCHESTS
+var current_objective
 
 
 func _ready() -> void:
@@ -21,20 +22,25 @@ func _ready() -> void:
 func _go_to_next_state(message:StringName) -> void:
 	match message:
 		&"chests_done":
+			await get_tree().create_timer(0.5).timeout
 			print("Chests spawned")
-			await get_tree().create_timer(3).timeout
+			_select_objective()
+		&"objective_selected":
+			print("Objective elements spawned")
+			await get_tree().create_timer(0.5).timeout
 			Signals.ToggleLoadingScreen.emit(false)
 			Signals.LoadUi.emit(&"play_ui", _get_data_from_id(manager.save_load.get_selected_character()))
 		&"play_ui_done":
 			print("play ui ready")
-			Signals.DisplayLevelIntro.emit()
+			Signals.DisplayLevelIntro.emit(level.data)
 		&"intro_displayed":
 			print("intro displayed")
 			_spawn_character()
 		&"characters_done":
-			_start_objective()
+			print("Characters spawned")
+			Signals.DisplayObjective.emit() # needs current_objective data
 		&"objective_displayed":
-			pass
+			print("Objective displayed")
 		_:
 			pass
 
@@ -53,5 +59,6 @@ func _get_data_from_id(_character_id:StringName) -> CharacterData:
 	return null
 
 
-func _start_objective() -> void:
-	Signals.DisplayObjective.emit() # needs data
+func _select_objective() -> void:
+	# Select through data resource
+	Signals.SpawnObjectiveElements.emit(&"tbd")

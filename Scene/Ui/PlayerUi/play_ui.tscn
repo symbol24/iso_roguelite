@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdi3icregrobv"]
+[gd_scene load_steps=8 format=3 uid="uid://cdi3icregrobv"]
 
 [ext_resource type="Script" uid="uid://blv2dsrcq6sa6" path="res://Code/UI/PlayerUi/play_ui.gd" id="1_0slje"]
 [ext_resource type="Texture2D" uid="uid://ccec3h1qfhp3y" path="res://Textures/Ui/hp_bar_back.png" id="2_lj84j"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dhumlvpssx63h" path="res://Textures/Ui/hp_bar_fill_white.png" id="4_bppdo"]
 [ext_resource type="Texture2D" uid="uid://dtjmckyguqjj4" path="res://Textures/Ui/enemy_hp_bar_back.png" id="5_bppdo"]
 [ext_resource type="Texture2D" uid="uid://cn5q8epuuj0g7" path="res://Textures/Ui/temp_ability_icon.png" id="6_7mhas"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bppdo"]
 
 [node name="PlayUi" type="Control"]
 custom_minimum_size = Vector2(320, 180)
@@ -88,3 +90,89 @@ value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("5_bppdo")
 texture_progress = ExtResource("6_7mhas")
+
+[node name="LevelInfo" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(320, 180)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelInfo"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="level_name" type="Label" parent="LevelInfo/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 50)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Level Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="level_description" type="Label" parent="LevelInfo/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "This is a very long description of the level that will go here"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ObjectiveInfo" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 55.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bppdo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ObjectiveInfo"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="map_panel" type="PanelContainer" parent="ObjectiveInfo/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="ObjectiveInfo/VBoxContainer/map_panel"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "map goes here"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="obj_name" type="Label" parent="ObjectiveInfo/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 4
+text = "objective goes here"
+vertical_alignment = 1
+
+[node name="obj_description" type="Label" parent="ObjectiveInfo/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 3
+text = "Description of objective goes here"
+autowrap_mode = 3
+
+[node name="obj_complete_count" type="Label" parent="ObjectiveInfo/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 3
+text = "Completed: 0/0"

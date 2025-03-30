@@ -6,7 +6,7 @@
 script = ExtResource("1_py4pm")
 uid = "uid://bn7ci5var4qqe"
 debug_name = "test level"
-tr_name = ""
+tr_name = "test_level_name"
 debug_description = "test level"
-tr_description = ""
+tr_description = "test_level_description"
 metadata/_custom_type_script = "uid://wydjkhj45ted"

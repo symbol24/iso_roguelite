@@ -7,11 +7,22 @@ const TEMPFILL:String = "uid://wlgi0bk4igll"
 const ACTIONBOX:PackedScene = preload("uid://dwkaxriwbkxdh")
 
 
+# Player Info
 @onready var hp_bar: TextureProgressBar = %hp_bar
 @onready var abilities_hbox: HBoxContainer = %abilities_hbox
 @onready var exp_bar: TextureProgressBar = %exp_bar
 @onready var shield_bar: TextureProgressBar = %shield_bar
 @onready var armor_bar: TextureProgressBar = %armor_bar
+# Level Info
+@onready var level_info: Control = %LevelInfo
+@onready var level_name: Label = %level_name
+@onready var level_description: Label = %level_description
+# Objective Info
+@onready var objective_info: PanelContainer = %ObjectiveInfo
+@onready var obj_name: Label = %obj_name
+@onready var obj_description: Label = %obj_description
+@onready var obj_complete_count: Label = %obj_complete_count
+
 
 var boxes:Array[ActionBox] = []
 var character_id:StringName = &""
@@ -23,6 +34,8 @@ func _ready() -> void:
 	Signals.ShieldUpdated.connect(_update_shield)
 	Signals.DisplayLevelIntro.connect(_display_level_intro)
 	Signals.DisplayObjective.connect(_display_objective)
+	level_info.hide()
+	objective_info.hide()
 
 
 func set_player_ui(data:CharacterData) -> void:
@@ -79,12 +92,29 @@ func _get_action_from_input(_input_name:StringName, _actions:Array[ActionData]) 
 	return null
 
 
-func _display_level_intro() -> void:
-	print("Displaying level intro")
+func _display_level_intro(level_data:LevelData) -> void:
+	level_name.text = level_data.debug_name if tr(level_data.tr_name) == level_data.tr_name else tr(level_data.tr_name)
+	level_description.text = level_data.debug_description if tr(level_data.tr_description) == level_data.tr_description else tr(level_data.tr_description)
+	level_info.modulate = Color.TRANSPARENT
+	level_info.show()
+	var tween:Tween = create_tween()
+	tween.tween_property(level_info, "modulate", Color.WHITE, Data.LEVELINFOTIME)
+	await get_tree().create_timer(Data.LEVELINFOTIME).timeout
+	tween = create_tween()
+	tween.tween_property(level_info, "modulate", Color.TRANSPARENT, Data.LEVELINFOTIME)
+	await tween.finished
+	level_info.hide()
 	Signals.UpdateRunState.emit(&"intro_displayed")
 
 
 func _display_objective() -> void:
-	print("Objective goes here")
+	objective_info.modulate = Color.TRANSPARENT
+	#obj_name
+	#obj_description
+	#obj_complete_count
+	objective_info.show()
+	var tween:Tween = create_tween()
+	tween.tween_property(objective_info, "modulate", Color.WHITE, Data.OBJINFOTIME)
+	await tween.finished
 	Signals.UpdateRunState.emit(&"objective_displayed")
 	

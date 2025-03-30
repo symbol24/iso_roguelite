@@ -1,7 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbrini12rqasr"]
+[gd_scene load_steps=9 format=3 uid="uid://bbrini12rqasr"]
 
 [ext_resource type="Script" uid="uid://dkhalfoxlej26" path="res://Code/UI/ui.gd" id="1_p7mxi"]
 [ext_resource type="Script" uid="uid://cke2g281v2gin" path="res://Code/UI/loading_screen.gd" id="2_1q3dl"]
+[ext_resource type="Texture2D" uid="uid://dt0mn43nvtosj" path="res://Textures/Ui/LoadingBars/Loading Icons-Load 1.png" id="3_sy61t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d44ye"]
+atlas = ExtResource("3_sy61t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjmab"]
+atlas = ExtResource("3_sy61t")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4g21"]
+atlas = ExtResource("3_sy61t")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo54b"]
+atlas = ExtResource("3_sy61t")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b1lps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d44ye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjmab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4g21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo54b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource("1_p7mxi")
@@ -16,7 +53,7 @@ offset_bottom = 40.0
 script = ExtResource("2_1q3dl")
 
 [node name="ColorRect" type="ColorRect" parent="LoadingScreen"]
-custom_minimum_size = Vector2(1280, 720)
+custom_minimum_size = Vector2(320, 180)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -25,10 +62,14 @@ color = Color(0.121569, 0.121569, 0.121569, 1)
 [node name="Label" type="Label" parent="LoadingScreen"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 0
-offset_left = 490.0
-offset_top = 454.0
-offset_right = 790.0
-offset_bottom = 504.0
+offset_top = 85.0
+offset_right = 320.0
+offset_bottom = 135.0
 text = "Loading"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LoadingScreen"]
+position = Vector2(160, 140)
+sprite_frames = SubResource("SpriteFrames_b1lps")
+autoplay = "default"

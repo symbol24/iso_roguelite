@@ -16,6 +16,8 @@ const DMG_NMBRS_WAIT:float = 0.05
 const TEMPICON:String = "uid://cn5q8epuuj0g7"
 const TEMPFILL:String = "uid://wlgi0bk4igll"
 const RETICLESCENE:String = "uid://sbfjvs8b24o2"
+const LEVELINFOTIME:float = 2.0
+const OBJINFOTIME:float = 2.0
 
 # Characters
 const MAXCOMBOWAITTIME:float = 5.0

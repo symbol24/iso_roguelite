@@ -1,6 +1,9 @@
 class_name Level extends Node2D
 
 
+@export var data:LevelData
+
+
 func _ready() -> void:
 	Signals.ManagerLoaded.connect(_manager_check)
 	Signals.LoadManager.emit(&"spawn_manager")

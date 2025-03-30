@@ -13,6 +13,7 @@ func _ready() -> void:
 	Signals.SpawnCharacter.connect(_spawn_character)
 	Signals.SpawnChests.connect(_spawn_chests)
 	Signals.CharacterReady.connect(_check_character)
+	Signals.SpawnObjectiveElements.connect(_spawn_objective_elements)
 
 
 func _spawn_character(data:CharacterData) -> void:
@@ -58,3 +59,8 @@ func _spawn_camera() -> void:
 	level.add_child(play_camera)
 	if not play_camera.is_node_ready(): await play_camera.ready
 	play_camera.global_position = _get_spawn_point().global_position
+
+
+func _spawn_objective_elements(_objective:StringName) -> void:
+	await get_tree().create_timer(0.5).timeout
+	Signals.UpdateRunState.emit(&"objective_selected")
