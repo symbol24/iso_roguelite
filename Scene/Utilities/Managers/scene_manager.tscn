@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bofyhb5fhgtkq"]
+[gd_scene load_steps=12 format=3 uid="uid://bofyhb5fhgtkq"]
 
 [ext_resource type="Script" uid="uid://b0lr51a4prlt2" path="res://Code/Utilities/Managers/scene_manager.gd" id="1_rhaqu"]
 [ext_resource type="Script" uid="uid://dbc4w35sfvyun" path="res://Code/Levels/levels_to_load_data.gd" id="2_ix3w6"]
@@ -6,14 +6,23 @@
 [ext_resource type="Resource" uid="uid://b4awyeybijauw" path="res://Data/Levels/main_menu.tres" id="3_0ir0k"]
 [ext_resource type="Resource" uid="uid://chhgvb4rpx3n2" path="res://Data/Levels/character_selection.tres" id="4_hpiph"]
 [ext_resource type="Resource" uid="uid://beab2jxub4d57" path="res://Data/Levels/test_level.tres" id="5_1wpe4"]
+[ext_resource type="Resource" uid="uid://b7mimycpp1lh2" path="res://Data/Levels/level_1_data.tres" id="6_uayxh"]
+[ext_resource type="Resource" uid="uid://ddrb1j8v8lqd6" path="res://Data/Levels/level_2_data.tres" id="7_gdyi2"]
+[ext_resource type="Resource" uid="uid://by6vn3s18cdc2" path="res://Data/Levels/level_3_data.tres" id="8_jt3b0"]
+[ext_resource type="Resource" uid="uid://b4t25nyhp52j6" path="res://Data/Levels/level_4_data.tres" id="9_w8cgh"]
 
 [sub_resource type="Resource" id="Resource_h2nef"]
 script = ExtResource("2_ix3w6")
 levels = Dictionary[StringName, ExtResource("2_qc84i")]({
 &"character_selection": ExtResource("4_hpiph"),
+&"level_1": ExtResource("6_uayxh"),
+&"level_2": ExtResource("7_gdyi2"),
+&"level_3": ExtResource("8_jt3b0"),
+&"level_4": ExtResource("9_w8cgh"),
 &"main_menu": ExtResource("3_0ir0k"),
 &"test_level": ExtResource("5_1wpe4")
 })
+possible_random_levels = Array[StringName]([&"level_1", &"level_2", &"level_3", &"level_4"])
 metadata/_custom_type_script = "uid://dbc4w35sfvyun"
 
 [node name="SceneManager" type="Node"]

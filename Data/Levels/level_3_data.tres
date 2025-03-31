@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=11 format=3 uid="uid://by6vn3s18cdc2"]
+
+[ext_resource type="Resource" uid="uid://0uaydet6clcm" path="res://Data/Levels/Objectives/objective_level_3_boss.tres" id="1_ij433"]
+[ext_resource type="Script" uid="uid://cfhj23ob8pxqw" path="res://Code/Enemies/enemy_data.gd" id="1_nry4d"]
+[ext_resource type="Script" uid="uid://dwjx8jmy71ckq" path="res://Code/Levels/Objectives/objective_data.gd" id="2_0oebo"]
+[ext_resource type="Script" uid="uid://wydjkhj45ted" path="res://Code/Levels/level_data.gd" id="3_e3tck"]
+[ext_resource type="Resource" uid="uid://dra5dmkyyd616" path="res://Data/Levels/Objectives/objective_destroy_mcguffin.tres" id="4_3ijo1"]
+[ext_resource type="Resource" uid="uid://c6fqmiqr6d18x" path="res://Data/Levels/Objectives/objective_enemy_kills.tres" id="5_h331p"]
+[ext_resource type="Resource" uid="uid://dt2pkmg6etxme" path="res://Data/Levels/Objectives/objective_hunt.tres" id="6_wa46r"]
+[ext_resource type="Resource" uid="uid://c6q1s8fg5tvgw" path="res://Data/Levels/Objectives/objective_kill_elites.tres" id="7_a1gck"]
+[ext_resource type="Resource" uid="uid://d30eb2y32ket8" path="res://Data/Levels/Objectives/objective_simon_says.tres" id="8_ursv1"]
+[ext_resource type="Resource" uid="uid://da8cmlm6s4kca" path="res://Data/Levels/Objectives/objectyive_key_hunt.tres" id="9_bejrl"]
+
+[resource]
+script = ExtResource("3_e3tck")
+uid = "uid://cg374nquh5rg3"
+debug_name = "Level 3"
+tr_name = "level_3_name"
+debug_description = "Level 3 Description"
+tr_description = "level_3_description"
+level_objectives = Array[ExtResource("2_0oebo")]([ExtResource("4_3ijo1"), ExtResource("5_h331p"), ExtResource("6_wa46r"), ExtResource("7_a1gck"), ExtResource("8_ursv1"), ExtResource("9_bejrl")])
+level_boss_objective = ExtResource("1_ij433")
+level_enemies = Array[ExtResource("1_nry4d")]([])
+metadata/_custom_type_script = "uid://wydjkhj45ted"

@@ -4,8 +4,6 @@ class_name Enemy extends CharacterBody2D
 @export var debug_data:EnemyData
 @export var debug_spawn:bool = false
 
-@onready var animator: AnimationPlayer = %animator
-@onready var anim_tree: AnimationTree = %anim_tree
 @onready var damage_nmbr_point: Marker2D = %damage_nmbr_point
 @onready var hp_bar: TextureProgressBar = %hp_bar
 

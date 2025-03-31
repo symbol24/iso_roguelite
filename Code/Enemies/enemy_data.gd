@@ -2,7 +2,8 @@ class_name EnemyData extends Resource
 
 
 @export var id:StringName = ""
-@export var enemy_uid:String
+@export var uid:String
+@export var type:Enums.Enemy_Type = Enums.Enemy_Type.NORMAL
 
 @export_category("Basics")
 @export var base_hp:float = 100.0
@@ -15,7 +16,7 @@ class_name EnemyData extends Resource
 @export var projectile_uid:String = ""
 @export var attack_type:Enums.Projectile_Type
 @export var damage_type:Enums.Damage_Type
-@export var sub_damabe_types:Array[Enums.Damage_Sub_Type] = []
+@export var sub_damage_types:Array[Enums.Damage_Sub_Type] = []
 @export var count_per_attack:int = 1
 @export var base_delay_between_attacks:float = 1.0
 @export var base_delay_between_proj:float = 0.1
@@ -130,7 +131,7 @@ func get_projectile_data() -> ProjectileShootData:
 	result.projectile_uid = projectile_uid
 	result.type = attack_type
 	result.damage_type = damage_type
-	result.sub_damage_types = sub_damabe_types.duplicate(true)
+	result.sub_damage_types = sub_damage_types.duplicate(true)
 	result.damage = damage
 	result.attack_speed = attack_speed
 	result.count_per_attack = count_per_attack

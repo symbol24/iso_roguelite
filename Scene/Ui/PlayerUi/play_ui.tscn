@@ -15,6 +15,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("1_0slje")
 
 [node name="hp_bar" type="TextureProgressBar" parent="."]
@@ -25,6 +26,7 @@ offset_left = 20.0
 offset_top = 151.0
 offset_right = 71.0
 offset_bottom = 160.0
+mouse_filter = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -77,6 +79,7 @@ offset_left = 112.5
 offset_top = 145.0
 offset_right = 207.5
 offset_bottom = 165.0
+mouse_filter = 2
 theme_override_constants/separation = 5
 
 [node name="exp_bar" type="TextureProgressBar" parent="."]
@@ -86,6 +89,7 @@ layout_mode = 0
 offset_top = 176.0
 offset_right = 320.0
 offset_bottom = 180.0
+mouse_filter = 2
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("5_bppdo")
@@ -98,6 +102,7 @@ custom_minimum_size = Vector2(320, 180)
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelInfo"]
 custom_minimum_size = Vector2(320, 0)
@@ -132,6 +137,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 55.0
 offset_bottom = 55.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bppdo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ObjectiveInfo"]
@@ -176,3 +182,11 @@ custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 3
 text = "Completed: 0/0"
+
+[node name="ObjectivesLayer" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 180)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

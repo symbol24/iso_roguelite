@@ -8,6 +8,8 @@ const RUNMANAGER:String = "uid://b8ch28ghnu074"
 const SPAWNMANAGER:String = "uid://dhcn02wbseaov"
 
 
+@export var debug:bool = false
+
 var save_load:SaveLoadManager = null
 var scene_manager:SceneManager = null
 var ui:CanvasLayer = null

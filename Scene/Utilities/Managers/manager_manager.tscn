@@ -4,3 +4,4 @@
 
 [node name="ManagerManager" type="Node" groups=["Manager"]]
 script = ExtResource("1_x2eob")
+debug = true

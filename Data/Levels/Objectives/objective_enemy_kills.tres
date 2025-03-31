@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelObjectiveData" load_steps=2 format=3 uid="uid://c6fqmiqr6d18x"]
+
+[ext_resource type="Script" uid="uid://dwjx8jmy71ckq" path="res://Code/Levels/Objectives/objective_data.gd" id="1_q43sg"]
+
+[resource]
+script = ExtResource("1_q43sg")
+id = &"enemy_kills"
+type = 1
+tr_name = "enemy_kills_name"
+debug_name = "Kill X enemies"
+tr_description = "enemy_kills_description"
+debug_description = "Kills them all!"
+tr_amount_label = "enemy_kills_amount_label"
+debug_amount_label = "To Kill:"
+difficulty_base_amounts = Dictionary[int, int]({
+0: 50,
+1: 75,
+2: 100,
+3: 200
+})
+metadata/_custom_type_script = "uid://dwjx8jmy71ckq"

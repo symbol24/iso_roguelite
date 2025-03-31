@@ -5,6 +5,10 @@ var level:Node2D:
 	get:
 		if level == null: level = get_tree().get_first_node_in_group(&"level")
 		return level
+var manager:MangerManager:
+	get:
+		if manager == null: manager = get_tree().get_first_node_in_group(&"Manager")
+		return manager
 var character:Character = null
 
 
@@ -62,6 +66,31 @@ func _spawn_camera() -> void:
 	play_camera.global_position = _get_spawn_point().global_position
 
 
-func _spawn_objective_elements(_objective:StringName) -> void:
-	await get_tree().create_timer(0.5).timeout
+func _spawn_objective_elements(objective:LevelObjectiveData) -> void:
+	if objective.type in [Enums.Objective_Type.DESTROYOBJECTS, Enums.Objective_Type.TOGGLEOBJECTS, Enums.Objective_Type.KEYHUNT]:
+		var spawn_points:Array[Marker2D] = _get_objective_spawn_points(objective.spawn_group, objective.get_amount_for_difficulty(manager.run_manager.run_difficulty, manager.run_manager.current_run_level))
+		if objective.objective_data == null or objective.objective_data.get(&"uid") == "":
+			push_error("Missing objective uid. Nothing to spawn.")
+		else:
+			for point in spawn_points:
+				var new_obj = load(objective.objective_data.uid).instantiate()
+				level.add_child(new_obj)
+				if not new_obj.is_node_ready(): await new_obj.ready
+				new_obj.name = objective.spawn_group + "_0"
+				new_obj.global_position = point.global_position
+				await get_tree().create_timer(0.1).timeout
 	Signals.UpdateRunState.emit(&"objective_selected")
+
+
+func _get_objective_spawn_points(_name:StringName, amount:int = 0) -> Array[Marker2D]:
+	var results:Array[Marker2D] = []
+	var list:Array[Marker2D] = []
+	var children:Array = get_tree().get_nodes_in_group(_name)
+	for each in children:
+		if each is Marker2D: list.append(each)
+	if list.size() < amount:
+		push_warning("Not enough nodes of group %s found. Returning amount of %s." % [_name, list.size()])
+		return list
+	while results.size() < amount:
+		results.append(list.pick_random())
+	return results

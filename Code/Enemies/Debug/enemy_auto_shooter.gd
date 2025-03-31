@@ -1,5 +1,4 @@
-class_name AutoShooter extends Enemy
-
+class_name AutoShooter extends EnemyAnimated
 
 
 func _check_death() -> void:

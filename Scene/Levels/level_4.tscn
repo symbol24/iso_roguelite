@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bashiw1ny46vx"]
+
+[ext_resource type="Script" uid="uid://cnqjcfmjfnh0s" path="res://Code/Levels/level.gd" id="1_4s2xc"]
+[ext_resource type="Resource" uid="uid://b4t25nyhp52j6" path="res://Data/Levels/level_4_data.tres" id="2_3dknv"]
+
+[node name="Level4" type="Node2D" groups=["level"]]
+script = ExtResource("1_4s2xc")
+data = ExtResource("2_3dknv")
+metadata/_custom_type_script = "uid://cnqjcfmjfnh0s"
+
+[node name="spawn_point" type="Marker2D" parent="." groups=["character_spawn_point"]]

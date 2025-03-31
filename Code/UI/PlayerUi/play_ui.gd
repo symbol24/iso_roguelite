@@ -22,6 +22,8 @@ const ACTIONBOX:PackedScene = preload("uid://dwkaxriwbkxdh")
 @onready var obj_name: Label = %obj_name
 @onready var obj_description: Label = %obj_description
 @onready var obj_complete_count: Label = %obj_complete_count
+# Objective Icons
+@onready var objectives_layer: Control = %ObjectivesLayer
 
 
 var boxes:Array[ActionBox] = []
@@ -34,6 +36,7 @@ func _ready() -> void:
 	Signals.ShieldUpdated.connect(_update_shield)
 	Signals.DisplayLevelIntro.connect(_display_level_intro)
 	Signals.DisplayObjective.connect(_display_objective)
+	Signals.ObjectiveCountUpdated.connect(_objective_count_updated)
 	level_info.hide()
 	objective_info.hide()
 
@@ -107,14 +110,17 @@ func _display_level_intro(level_data:LevelData) -> void:
 	Signals.UpdateRunState.emit(&"intro_displayed")
 
 
-func _display_objective() -> void:
+func _display_objective(obj_data:LevelObjectiveData) -> void:
 	objective_info.modulate = Color.TRANSPARENT
-	#obj_name
-	#obj_description
-	#obj_complete_count
+	obj_name.text = obj_data.debug_name if tr(obj_data.tr_name) == obj_data.tr_name else tr(obj_data.tr_name)
+	obj_description.text = obj_data.debug_description if tr(obj_data.tr_description) == obj_data.tr_description else tr(obj_data.tr_description)
+	obj_complete_count.text = obj_data.debug_amount_label + " 0/" + str(obj_data.max_count) if tr(obj_data.tr_amount_label) == obj_data.tr_amount_label else tr(obj_data.tr_amount_label) + " 0/" + str(obj_data.max_count)
 	objective_info.show()
 	var tween:Tween = create_tween()
 	tween.tween_property(objective_info, "modulate", Color.WHITE, Data.OBJINFOTIME)
 	await tween.finished
 	Signals.UpdateRunState.emit(&"objective_displayed")
 	
+
+func _objective_count_updated(obj_data:LevelObjectiveData) -> void:
+	obj_complete_count.text = obj_data.debug_amount_label + " " + str(obj_data.current_count) + "/" + str(obj_data.max_count) if tr(obj_data.tr_amount_label) == obj_data.tr_amount_label else tr(obj_data.tr_amount_label) + " " + str(obj_data.current_count) + "/" + str(obj_data.max_count)

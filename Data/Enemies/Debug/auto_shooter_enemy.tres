@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_lms2i")
 id = &"auto_shooter_enemy"
-enemy_uid = "uid://d1qua4xd73bsa"
+uid = "uid://d1qua4xd73bsa"
+type = 0
 base_hp = 100.0
 base_lives = 1
 base_speed = 0.0
@@ -14,7 +15,7 @@ base_friction = 0.0
 projectile_uid = "uid://t05dkhfi5y1a"
 attack_type = 0
 damage_type = 0
-sub_damabe_types = Array[int]([])
+sub_damage_types = Array[int]([])
 count_per_attack = 1
 base_delay_between_attacks = 5.0
 base_delay_between_proj = 0.1

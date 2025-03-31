@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="LevelObjectiveData" load_steps=3 format=3 uid="uid://dra5dmkyyd616"]
+
+[ext_resource type="Script" uid="uid://dwjx8jmy71ckq" path="res://Code/Levels/Objectives/objective_data.gd" id="1_cfhmg"]
+[ext_resource type="Resource" uid="uid://cf74g260ghydg" path="res://Data/Enemies/LevelObjectives/destructible_tower_data.tres" id="1_f4fl1"]
+
+[resource]
+script = ExtResource("1_cfhmg")
+id = &"destroy_mcguffin"
+type = 2
+spawn_group = &"destroy_objective"
+objective_data = ExtResource("1_f4fl1")
+tr_name = "destroy_mcguffin_name"
+debug_name = "Destroy the McGuffin!"
+tr_description = "destroy_mcguffin_description"
+debug_description = "Destroy X amount of McGuffins."
+tr_amount_label = "destroy_mcguffin_amount_label"
+debug_amount_label = "Destroyed: "
+difficulty_base_amounts = Dictionary[int, int]({
+0: 3,
+1: 5,
+2: 8,
+3: 12
+})
+metadata/_custom_type_script = "uid://dwjx8jmy71ckq"

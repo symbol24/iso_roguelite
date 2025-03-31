@@ -7,14 +7,16 @@ var manager:MangerManager:
 	get: 
 		if manager == null: manager = get_tree().get_first_node_in_group(&"Manager")
 		return manager
-var level:Node2D:
+var level:Level:
 	get:
 		if level == null: level = get_tree().get_first_node_in_group(&"level")
 		return level
-var current_level_state:Enums.LevelState = Enums.LevelState.SPAWNINGCHESTS
-var current_objective
+var current_objective:LevelObjectiveData
+var previous_objective:StringName = &""
 var can_pause:bool = false
-
+var debug_objective:StringName = &""
+var current_run_level:int = 1
+var run_difficulty:int = 0
 
 func _input(event: InputEvent) -> void:
 	if can_pause:
@@ -31,6 +33,17 @@ func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	Signals.UpdateRunState.connect(_go_to_next_state)
 	Signals.ToggleCanPause.connect(_toggle_can_pause)
+	Signals.EnemyDeath.connect(_receive_enemy_death)
+	Signals.DebugObjectiveSelect.connect(_set_debug_objective)
+	Signals.SetDifficulty.connect(_set_difficulty)
+	Signals.ResetRun.connect(_reset_run)
+
+
+func _reset_run() -> void:
+	current_run_level = 1
+	run_difficulty = 1
+	debug_objective = &""
+	current_objective = null
 
 
 func _go_to_next_state(message:StringName) -> void:
@@ -52,10 +65,13 @@ func _go_to_next_state(message:StringName) -> void:
 			_spawn_character()
 		&"characters_done":
 			print("Characters spawned")
-			Signals.DisplayObjective.emit() # needs current_objective data
+			Signals.DisplayObjective.emit(current_objective) # needs current_objective data
 		&"objective_displayed":
 			print("Objective displayed")
+			current_objective.can_receive = true
 			_toggle_can_pause(true)
+		&"objective_complete":
+			pass # spawn the boss!
 		&"run_ended_failure":
 			print("Run ended in fail")
 			_toggle_can_pause(false)
@@ -83,9 +99,48 @@ func _get_data_from_id(_character_id:StringName) -> CharacterData:
 
 
 func _select_objective() -> void:
-	# Select through data resource
-	Signals.SpawnObjectiveElements.emit(&"tbd")
+	if manager.debug:
+		if debug_objective != &"":
+			current_objective = level.data.get_objective_from_id(debug_objective)
+			debug_objective = &""
+			previous_objective = &""
+		else:
+			current_objective = level.data.get_random_level_objective(previous_objective)
+	else:
+		current_objective = level.data.get_random_level_objective(previous_objective)
+	
+	current_objective.reset_objective()
+	previous_objective = current_objective.id
+	Signals.SpawnObjectiveElements.emit(current_objective)
 
 
 func _toggle_can_pause(value:bool) -> void:
 	can_pause = value
+
+
+func _receive_enemy_death(enemy_data:EnemyData) -> void:
+	match current_objective.type:
+		Enums.Objective_Type.ENEMYKILLS:
+			current_objective.current_count += 1
+		Enums.Objective_Type.DEFEATELITES:
+			if enemy_data.type == Enums.Enemy_Type.ELITE:
+				current_objective.current_count += 1
+		Enums.Objective_Type.DEFEATBOSS:
+			if enemy_data.type == Enums.Enemy_Type.BOSS:
+				current_objective.current_count += 1
+		Enums.Objective_Type.HUNT:
+			if enemy_data.type == Enums.Enemy_Type.HUNTED:
+				current_objective.current_count += 1
+		Enums.Objective_Type.DESTROYOBJECTS:
+			if enemy_data.type == Enums.Enemy_Type.DESTRUCTIBLE:
+				current_objective.current_count += 1
+		_:
+			pass
+
+
+func _set_debug_objective(value:StringName) -> void:
+	debug_objective = value
+
+
+func _set_difficulty(value:int) -> void:
+	run_difficulty = value

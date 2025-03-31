@@ -55,6 +55,11 @@ play_camera=""
 level=""
 Manager=""
 character_spawn_point=""
+destroy_objective="Spawn point for destroy objectives"
+
+[gui]
+
+theme/custom="uid://csrxtjtfedobq"
 
 [input]
 

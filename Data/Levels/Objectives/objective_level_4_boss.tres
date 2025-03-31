@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelObjectiveData" load_steps=2 format=3 uid="uid://cgatg5ln0i40y"]
+
+[ext_resource type="Script" uid="uid://dwjx8jmy71ckq" path="res://Code/Levels/Objectives/objective_data.gd" id="1_pyvya"]
+
+[resource]
+script = ExtResource("1_pyvya")
+id = &"level_14_boss"
+type = 6
+tr_name = "level_4_boss_name"
+debug_name = "Defeat Boss"
+tr_description = "level_4_boss_description"
+debug_description = "Defeat the boss"
+tr_amount_label = "level_4_boss_label"
+debug_amount_label = "Boss Defeated:"
+difficulty_base_amounts = Dictionary[int, int]({
+0: 1,
+1: 1,
+2: 1,
+3: 1
+})
+metadata/_custom_type_script = "uid://dwjx8jmy71ckq"

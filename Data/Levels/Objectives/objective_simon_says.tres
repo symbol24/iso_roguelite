@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelObjectiveData" load_steps=2 format=3 uid="uid://d30eb2y32ket8"]
+
+[ext_resource type="Script" uid="uid://dwjx8jmy71ckq" path="res://Code/Levels/Objectives/objective_data.gd" id="1_pn4vy"]
+
+[resource]
+script = ExtResource("1_pn4vy")
+id = &"simon_says"
+type = 3
+tr_name = "simon_says_name"
+debug_name = "Turn on the Things!"
+tr_description = "simon_says_description"
+debug_description = "Follow the icons in order to turn on the things."
+tr_amount_label = "simon_says_amount_label"
+debug_amount_label = "Turned On:"
+difficulty_base_amounts = Dictionary[int, int]({
+0: 4,
+1: 6,
+2: 8,
+3: 12
+})
+metadata/_custom_type_script = "uid://dwjx8jmy71ckq"

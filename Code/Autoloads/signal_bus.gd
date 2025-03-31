@@ -7,10 +7,12 @@ signal ManagerLoaded(id:StringName)
 signal LoadScene(id:StringName, display_loading_screen:bool)
 signal SceneLoaded(id:StringName)
 signal Save()
+signal ResetRun()
 signal SetCharacter(id:StringName)
+signal SetDifficulty(difficulty:int)
 signal SpawnCharacter(data:CharacterData)
 signal SpawnChests()
-signal SpawnObjectiveElements(objective:StringName)
+signal SpawnObjectiveElements(objective:LevelObjectiveData)
 signal UpdateRunState(message:StringName)
 signal SpawnCamera()
 signal ToggleCanPause(value:bool)
@@ -38,8 +40,9 @@ signal ToggleLoadingScreen(toggle:bool)
 signal LoadUi(ui_name:StringName, _additional_info)
 signal DmgNbrTreeExit(dmg_nbr:DamageNumber)
 signal DisplayLevelIntro(data:LevelData)
-signal DisplayObjective() # needs data
+signal DisplayObjective(data:LevelObjectiveData) # needs data
 signal ToggleUi(ui_name:StringName, display:bool)
+signal ObjectiveCountUpdated(data:LevelObjectiveData)
 
 # CharacterSelection
 signal CharacterSelectionBtnPressed(character_data:CharacterData)
@@ -50,3 +53,4 @@ signal EnemyReady(enemy:Enemy)
 
 # DEBUG
 signal DebugCharacterInfo(info:StringName, value:String)
+signal DebugObjectiveSelect(objective:StringName)
