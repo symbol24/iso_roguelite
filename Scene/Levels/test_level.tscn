@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bn7ci5var4qqe"]
+[gd_scene load_steps=6 format=4 uid="uid://bn7ci5var4qqe"]
 
 [ext_resource type="TileSet" uid="uid://bjke6unbk6v88" path="res://Data/Tilesets/red_iso_tilset.tres" id="1_6e4q7"]
 [ext_resource type="Script" uid="uid://cnqjcfmjfnh0s" path="res://Code/Levels/level.gd" id="1_xmoga"]
 [ext_resource type="Resource" uid="uid://beab2jxub4d57" path="res://Data/Levels/test_level.tres" id="2_xmoga"]
 [ext_resource type="PackedScene" uid="uid://d1qua4xd73bsa" path="res://Scene/Enemies/Debug/enemy_auto_shooter.tscn" id="5_t5c8m"]
+[ext_resource type="PackedScene" uid="uid://bb51s4qlqi1fd" path="res://Scene/Interactibles/chest_test.tscn" id="5_w34ts"]
 
 [node name="TestLevel" type="Node2D" groups=["level"]]
 script = ExtResource("1_xmoga")
@@ -34,3 +35,12 @@ debug_spawn = true
 
 [node name="spawn_point" type="Marker2D" parent="." groups=["character_spawn_point"]]
 position = Vector2(214, 97)
+
+[node name="Chest_0" parent="." instance=ExtResource("5_w34ts")]
+position = Vector2(288, 44)
+
+[node name="Chest_1" parent="." instance=ExtResource("5_w34ts")]
+position = Vector2(350, 93)
+
+[node name="Chest_2" parent="." instance=ExtResource("5_w34ts")]
+position = Vector2(385, 27)

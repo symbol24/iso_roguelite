@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dvs3vkehe2j0f"]
+[gd_scene load_steps=48 format=3 uid="uid://dvs3vkehe2j0f"]
 
 [ext_resource type="Script" uid="uid://qbwgtos367s" path="res://Code/Characters/character.gd" id="1_h0gwg"]
 [ext_resource type="Resource" uid="uid://cyuqry7i86d8b" path="res://Data/Characters/RifleHero/rifle_hero_data.tres" id="2_xal1p"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://8oam15xcqxtn" path="res://Code/Characters/Actions/projectile_shoot.gd" id="13_xx16f"]
 [ext_resource type="Resource" uid="uid://dho4s0nd0g1uo" path="res://Data/Characters/RifleHero/rifle_hero_mine_data.tres" id="14_0bs5e"]
 [ext_resource type="Script" uid="uid://8dm7out4apnk" path="res://Code/Ship/Actions/PelletShip/boost.gd" id="15_omeh4"]
+[ext_resource type="Script" uid="uid://bu3pl6h43fh2n" path="res://Code/Characters/Actions/interact.gd" id="16_2gpgk"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5vlk"]
 animation = &"death"
@@ -651,8 +652,13 @@ height = 10.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0pos"]
 radius = 2.0
 
-[node name="RifleHero" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ggoky"]
+radius = 7.0
+height = 20.0
+
+[node name="RifleHero" type="CharacterBody2D" groups=["player"]]
 top_level = true
+z_index = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_h0gwg")
@@ -759,3 +765,11 @@ position = Vector2(0, 9)
 script = ExtResource("15_omeh4")
 data = ExtResource("6_kucrr")
 metadata/_custom_type_script = "uid://8dm7out4apnk"
+
+[node name="Interact" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
+script = ExtResource("16_2gpgk")
+
+[node name="interact_collider" type="CollisionShape2D" parent="Interact"]
+shape = SubResource("CapsuleShape2D_ggoky")

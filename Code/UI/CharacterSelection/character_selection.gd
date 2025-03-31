@@ -73,7 +73,7 @@ func _build_selection_buttons() -> void:
 
 func _btn_start_pressed() -> void:
 	Signals.ResetRun.emit()
-	Signals.SetCharacter.emit(selected_character.id)
+	Signals.SetCharacter.emit(selected_character)
 	Signals.SetDifficulty.emit(selected_difficulty)
 	if not manager.debug:
 		Signals.LoadScene.emit(manager.scene_manager.levels.get_random_level(), display_loading_on_start)

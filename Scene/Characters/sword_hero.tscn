@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://djuavhso465ru"]
+[gd_scene load_steps=113 format=3 uid="uid://djuavhso465ru"]
 
 [ext_resource type="Script" uid="uid://qbwgtos367s" path="res://Code/Characters/character.gd" id="1_nrfoo"]
 [ext_resource type="Resource" uid="uid://bgutg1mu56vq1" path="res://Data/Characters/SwordHero/sword_hero_data.tres" id="2_ukg3s"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://cqwvyxj8ae7pg" path="res://Data/Characters/SwordHero/sword_hero_roll_data.tres" id="14_kg541"]
 [ext_resource type="Script" uid="uid://bjsya3ksalxs2" path="res://Code/Characters/Actions/apply_effect.gd" id="15_mot38"]
 [ext_resource type="Resource" uid="uid://dvti1ro1c3he1" path="res://Data/Characters/SwordHero/sword_hero_apply_armor_data.tres" id="16_kt8b8"]
+[ext_resource type="Script" uid="uid://bu3pl6h43fh2n" path="res://Code/Characters/Actions/interact.gd" id="17_mlelk"]
 
 [sub_resource type="Animation" id="Animation_igsan"]
 length = 0.001
@@ -2319,7 +2320,13 @@ height = 56.0
 radius = 8.0
 height = 56.0
 
-[node name="SwordHero" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rwevu"]
+radius = 7.0
+height = 20.0
+
+[node name="SwordHero" type="CharacterBody2D" groups=["player"]]
+top_level = true
+z_index = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_nrfoo")
@@ -2524,3 +2531,11 @@ metadata/_custom_type_script = "uid://dundrmstcw6a1"
 script = ExtResource("15_mot38")
 data = ExtResource("16_kt8b8")
 metadata/_custom_type_script = "uid://bjsya3ksalxs2"
+
+[node name="Interact" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
+script = ExtResource("17_mlelk")
+
+[node name="interact_collider" type="CollisionShape2D" parent="Interact"]
+shape = SubResource("CapsuleShape2D_rwevu")

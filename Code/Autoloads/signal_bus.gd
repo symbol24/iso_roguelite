@@ -1,21 +1,31 @@
 extends Node
 
 
-# Managers
+# Manager Manager
 signal LoadManager(id:StringName)
 signal ManagerLoaded(id:StringName)
+
+# Scene Manager
 signal LoadScene(id:StringName, display_loading_screen:bool)
 signal SceneLoaded(id:StringName)
-signal Save()
+
+# Run Manager
 signal ResetRun()
-signal SetCharacter(id:StringName)
+signal SetCharacter(data:CharacterData)
 signal SetDifficulty(difficulty:int)
+signal UpdateRunState(message:StringName)
+signal ToggleCanPause(value:bool)
+
+# Spawn Manager
 signal SpawnCharacter(data:CharacterData)
 signal SpawnChests()
 signal SpawnObjectiveElements(objective:LevelObjectiveData)
-signal UpdateRunState(message:StringName)
 signal SpawnCamera()
-signal ToggleCanPause(value:bool)
+signal SpawnLevelBoss()
+
+# Save Load Manager
+signal RunCurrencyUpdate(value:int)
+signal Save()
 
 # Levels
 signal LevelReady(id:StringName)
@@ -43,6 +53,7 @@ signal DisplayLevelIntro(data:LevelData)
 signal DisplayObjective(data:LevelObjectiveData) # needs data
 signal ToggleUi(ui_name:StringName, display:bool)
 signal ObjectiveCountUpdated(data:LevelObjectiveData)
+signal RunCurrencyUpdated(value:int)
 
 # CharacterSelection
 signal CharacterSelectionBtnPressed(character_data:CharacterData)

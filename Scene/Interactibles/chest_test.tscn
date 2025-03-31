@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://bb51s4qlqi1fd"]
+
+[ext_resource type="Script" uid="uid://j4qvpg3qo1cw" path="res://Code/Interactible/upgrade_interactible.gd" id="1_0keht"]
+[ext_resource type="Resource" uid="uid://ounr4tped0m4" path="res://Data/Interactibles/UpgradeInteractibles/test_chest.tres" id="2_ps254"]
+[ext_resource type="Texture2D" uid="uid://fy3mg1kx5ikm" path="res://Textures/Chests/Chest 1-Bronze.png" id="2_vp3dr"]
+
+[sub_resource type="Animation" id="Animation_cqdsm"]
+resource_name = "idle"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mnbe7"]
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6u10v"]
+resource_name = "open"
+length = 1.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_eu34v"]
+resource_name = "stay_open"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6sus"]
+_data = {
+&"RESET": SubResource("Animation_mnbe7"),
+&"idle": SubResource("Animation_cqdsm"),
+&"open": SubResource("Animation_6u10v"),
+&"stay_open": SubResource("Animation_eu34v")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnbe7"]
+radius = 9.05539
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vp3dr"]
+size = Vector2(11, 4)
+
+[node name="Chest_0" type="Area2D" groups=["interactible"]]
+top_level = true
+z_index = 1
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_0keht")
+data = ExtResource("2_ps254")
+metadata/_custom_type_script = "uid://bx2x2npg4va2a"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_i6sus")
+}
+autoplay = "idle"
+
+[node name="interactible_collider" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_mnbe7")
+
+[node name="sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+texture = ExtResource("2_vp3dr")
+hframes = 19
+
+[node name="prompt" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 1.0
+
+[node name="Label" type="Label" parent="prompt"]
+custom_minimum_size = Vector2(20, 5)
+layout_mode = 0
+offset_left = -15.0
+offset_top = -27.0
+offset_right = 15.0
+offset_bottom = -18.0
+text = "INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_vp3dr")

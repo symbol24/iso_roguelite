@@ -11,7 +11,7 @@ var all_saves:Array[PlayerData] = []
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
-	Signals.SetCharacter.connect(_set_character)
+	Signals.RunCurrencyUpdate.connect(_update_run_currency)
 	if _check_folder():
 		all_saves = _load_save_files()
 		if all_saves.is_empty():
@@ -77,5 +77,5 @@ func _create_save_file(_id:StringName) -> void:
 			print("Error opening save folder while creating save file.")
 
 
-func _set_character(id:StringName) -> void:
-	current_save.set_current_character(id)
+func _update_run_currency(value:int) -> void:
+	current_save.run_currency += value

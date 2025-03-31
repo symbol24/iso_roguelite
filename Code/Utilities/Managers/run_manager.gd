@@ -17,6 +17,7 @@ var can_pause:bool = false
 var debug_objective:StringName = &""
 var current_run_level:int = 1
 var run_difficulty:int = 0
+var current_character:CharacterData = null
 
 func _input(event: InputEvent) -> void:
 	if can_pause:
@@ -37,6 +38,11 @@ func _ready() -> void:
 	Signals.DebugObjectiveSelect.connect(_set_debug_objective)
 	Signals.SetDifficulty.connect(_set_difficulty)
 	Signals.ResetRun.connect(_reset_run)
+	Signals.SetCharacter.connect(_set_character)
+
+
+func _set_character(value:CharacterData) -> void:
+	current_character = value
 
 
 func _reset_run() -> void:
@@ -44,6 +50,7 @@ func _reset_run() -> void:
 	run_difficulty = 1
 	debug_objective = &""
 	current_objective = null
+	current_character = null
 
 
 func _go_to_next_state(message:StringName) -> void:
@@ -56,13 +63,13 @@ func _go_to_next_state(message:StringName) -> void:
 			print("Objective elements spawned")
 			await get_tree().create_timer(0.5).timeout
 			Signals.ToggleLoadingScreen.emit(false)
-			Signals.LoadUi.emit(&"play_ui", _get_data_from_id(manager.save_load.get_selected_character()))
+			Signals.LoadUi.emit(&"play_ui", manager.run_manager.current_character)
 		&"play_ui_done":
 			print("play ui ready")
 			Signals.DisplayLevelIntro.emit(level.data)
 		&"intro_displayed":
 			print("intro displayed")
-			_spawn_character()
+			Signals.SpawnCharacter.emit(current_character)
 		&"characters_done":
 			print("Characters spawned")
 			Signals.DisplayObjective.emit(current_objective) # needs current_objective data
@@ -71,7 +78,7 @@ func _go_to_next_state(message:StringName) -> void:
 			current_objective.can_receive = true
 			_toggle_can_pause(true)
 		&"objective_complete":
-			pass # spawn the boss!
+			Signals.SpawnLevelBoss.emit()
 		&"run_ended_failure":
 			print("Run ended in fail")
 			_toggle_can_pause(false)
@@ -82,14 +89,6 @@ func _go_to_next_state(message:StringName) -> void:
 			# display run success screen
 		_:
 			pass
-
-
-func _spawn_character() -> void:
-	var data:CharacterData = _get_data_from_id(manager.save_load.get_selected_character())
-	if data == null:
-		push_warning("Unable to find proper data for id ", manager.save_load.get_selected_character(), ". Character spawning ignored.")
-		return
-	Signals.SpawnCharacter.emit(data)
 
 
 func _get_data_from_id(_character_id:StringName) -> CharacterData:
