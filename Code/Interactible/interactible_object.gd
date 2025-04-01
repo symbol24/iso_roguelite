@@ -17,7 +17,7 @@ func interact(currency:int = 0) -> Dictionary:
 	if data and currency >= data.cost:
 		result[&"result"] = true
 		result[&"cost"] = data.cost
-		result[&"reward"] = data.reward
+		result[&"reward"] = data.reward.get_loot(2)
 		_trigger_visuals()
 	return result
 

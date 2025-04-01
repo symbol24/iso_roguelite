@@ -27,8 +27,10 @@ func _interact() -> void:
 			if result[&"reward"] == null:
 				print("No rewards yet")
 			else:
-				if result[&"reward"] is RunUpgradeData:
-					Signals.AddRunUpgrade.emit(result[&"reward"])
+				if result[&"reward"] is Array and not result[&"reward"].is_empty():
+					for each in result[&"reward"]:
+						if each is RunUpgradeData:
+							Signals.AddRunUpgrade.emit(each)
 
 
 func _area_entered(area) -> void:

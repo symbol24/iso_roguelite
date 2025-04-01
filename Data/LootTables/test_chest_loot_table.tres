@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=5 format=3 uid="uid://b6jtg05mm8vh1"]
+
+[ext_resource type="Resource" uid="uid://ckpmj6s6yb7fl" path="res://Data/RunUpgrades/test_attack_speed.tres" id="1_nguir"]
+[ext_resource type="Script" uid="uid://cslu4gqugqoyr" path="res://Code/LootTables/loot_table.gd" id="1_wc4qa"]
+[ext_resource type="Resource" uid="uid://cv1pe85xrlwv8" path="res://Data/RunUpgrades/test_crit_chance.tres" id="2_ovsuj"]
+[ext_resource type="Resource" uid="uid://1n78u6jlstq2" path="res://Data/RunUpgrades/test_speed.tres" id="3_rh36s"]
+
+[resource]
+script = ExtResource("1_wc4qa")
+id = &"test_chess_LT"
+list = Dictionary[Resource, int]({
+ExtResource("1_nguir"): 5,
+ExtResource("2_ovsuj"): 10,
+ExtResource("3_rh36s"): 15
+})
+metadata/_custom_type_script = "uid://cslu4gqugqoyr"

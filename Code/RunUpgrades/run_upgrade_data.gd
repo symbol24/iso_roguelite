@@ -22,11 +22,11 @@ func add_to_count() -> void:
 	count += 1
 
 
-func get_variable(variable:StringName) -> float:
+func get_variable(_variable:StringName) -> float:
 	return 0.0
 
 
-func get_next_value_level(variable:StringName) -> float:
+func get_next_value_level(_variable:StringName) -> float:
 	return 0.0
 
 
