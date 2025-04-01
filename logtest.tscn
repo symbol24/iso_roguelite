@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dynjkqff4qd47"]
+
+[sub_resource type="GDScript" id="GDScript_sblkw"]
+script/source = "extends Node2D
+
+
+func _ready() -> void:
+	var max_value:float = 40.0
+	var value:float = 5.0
+	var count:float = 20.0
+	var result:float = 0.0
+	var i:int = 1
+	while i < count:
+		var to_add:float = log_sum_formula(i, value, max_value)
+		result += to_add
+		if result > max_value: result = max_value
+		print(result)
+		i += 1
+
+
+func log_sum_formula(level:float, min_val:float, max_val:float) -> float:
+	var result:float
+	result = min_val * pow(level, -(min_val/max_val)*2)
+	return result
+
+
+func log_sum_formula_two(level: float, min_val: float, max_val: float) -> float:
+	var offset = 2.0
+	var _scale = 20.0
+	var decay = 0.08
+	var power_factor = 1.5
+
+	var log_part = log(_scale + max_val - level + offset) * 2.0
+	var exp_part = exp(-decay * level) * 10
+	var power_decay = pow((max_val - level) / max_val, power_factor) * 8
+
+	var result = (log_part + exp_part + power_decay) + min_val
+	return result
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_sblkw")

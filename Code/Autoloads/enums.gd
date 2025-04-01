@@ -57,3 +57,14 @@ enum Enemy_Type {
 					HUNTED = 3,
 					DESTRUCTIBLE = 4,
 				}
+
+enum Upgrade_Type {
+					PASSIVE = 0,
+					ACTIVE = 1,
+					TRIGGERED = 2,
+				}
+
+enum Stack_Type {
+					LINEAR = 0,
+					LOGARITHMIC = 1
+				}

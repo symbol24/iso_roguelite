@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PassiveUpgradeData" load_steps=2 format=3 uid="uid://1n78u6jlstq2"]
+
+[ext_resource type="Script" uid="uid://cduflfb583gqy" path="res://Code/RunUpgrades/passive_upgrade_data.gd" id="1_86eoe"]
+
+[resource]
+script = ExtResource("1_86eoe")
+variables = Dictionary[StringName, float]({
+&"speed": 5.0
+})
+max_of_variables = Dictionary[StringName, float]({})
+stack_type = 0
+id = &"test_speed"
+name_tr = ""
+name_debug = "test_speed"
+description_tr = ""
+description_debug = "test_speed"
+icon_uid = ""
+type = 0
+metadata/_custom_type_script = "uid://cduflfb583gqy"

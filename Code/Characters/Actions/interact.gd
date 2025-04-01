@@ -11,8 +11,8 @@ var manager:MangerManager:
 func _ready() -> void:
 	area_entered.connect(_area_entered)
 	area_exited.connect(_area_exited)
-	
-	
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact"):
 		_interact()
@@ -27,14 +27,15 @@ func _interact() -> void:
 			if result[&"reward"] == null:
 				print("No rewards yet")
 			else:
-				# Send signal to trigger right reward result
-				pass
+				if result[&"reward"] is RunUpgradeData:
+					Signals.AddRunUpgrade.emit(result[&"reward"])
+
 
 func _area_entered(area) -> void:
 	if area is Interactible:
 		interactible = area
-		
-		
+
+
 func _area_exited(area) -> void:
 	if area == interactible:
 		interactible = null

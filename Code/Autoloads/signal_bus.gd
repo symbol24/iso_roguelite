@@ -43,6 +43,7 @@ signal ArmorUpdated(data:CharacterData)
 signal ShieldUpdated(data:CharacterData)
 signal CharacterDeath(data:CharacterData)
 signal AnimationSignal(character:Character, type:StringName, value)
+signal AddRunUpgrade(data:RunUpgradeData)
 
 # UI
 signal SpawnDamageNumber(damage:Damage, pos:Node2D)

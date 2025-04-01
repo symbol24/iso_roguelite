@@ -22,6 +22,7 @@ var can_receive_new_vel:bool = true
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_PAUSABLE
+	Signals.AddRunUpgrade.connect(_add_run_upgrade)
 	if debug_spawn:
 		if data == null: character_setup()
 	var play_camera = get_tree().get_first_node_in_group(&"play_camera") as Camera2D
@@ -224,3 +225,7 @@ func _end_hit() -> void:
 
 func _send_animation_signal(type:StringName, value) -> void:
 	Signals.AnimationSignal.emit(self, type, value)
+
+
+func _add_run_upgrade(upgrade:RunUpgradeData) -> void:
+	data.add_run_upgrade(upgrade)

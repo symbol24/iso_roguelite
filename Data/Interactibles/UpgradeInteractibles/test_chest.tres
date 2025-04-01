@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="InteractibleData" load_steps=2 format=3 uid="uid://ounr4tped0m4"]
+[gd_resource type="Resource" script_class="InteractibleData" load_steps=3 format=3 uid="uid://ounr4tped0m4"]
 
+[ext_resource type="Resource" uid="uid://cv1pe85xrlwv8" path="res://Data/RunUpgrades/test_crit_chance.tres" id="1_hophf"]
 [ext_resource type="Script" uid="uid://du4nud7yt3jvb" path="res://Code/Interactible/interactible_data.gd" id="1_ukeld"]
 
 [resource]
 script = ExtResource("1_ukeld")
 uid = "uid://bb51s4qlqi1fd"
 id = &"test_chest"
-cost = 5
+cost = 0
+reward = ExtResource("1_hophf")
 metadata/_custom_type_script = "uid://du4nud7yt3jvb"

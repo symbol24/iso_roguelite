@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PassiveUpgradeData" load_steps=2 format=3 uid="uid://ckpmj6s6yb7fl"]
+
+[ext_resource type="Script" uid="uid://cduflfb583gqy" path="res://Code/RunUpgrades/passive_upgrade_data.gd" id="1_gejmj"]
+
+[resource]
+script = ExtResource("1_gejmj")
+variables = Dictionary[StringName, float]({
+&"attack_speed": 0.02
+})
+max_of_variables = Dictionary[StringName, float]({})
+stack_type = 0
+id = &"test_attack_speed"
+name_tr = ""
+name_debug = "test_attack_speed"
+description_tr = ""
+description_debug = "test_attack_speed"
+icon_uid = ""
+type = 0
+metadata/_custom_type_script = "uid://cduflfb583gqy"

@@ -97,7 +97,7 @@ var explosive_resist:float:
 
 # Upgrades
 var active_meta_upgrades:Array = []
-var active_run_upgrades:Array = []
+var active_run_upgrades:Array[RunUpgradeData] = []
 
 
 func setup_data(meta_upgrades:Array = []) -> void:
@@ -106,6 +106,24 @@ func setup_data(meta_upgrades:Array = []) -> void:
 	current_lives = max_lives
 	current_armor = max_armor
 	current_shield = max_shield
+	active_meta_upgrades.clear()
+	active_run_upgrades.clear()
+
+
+func add_run_upgrade(new_upgrade:RunUpgradeData) -> void:
+	var upgrade:RunUpgradeData
+	for each in active_run_upgrades:
+		if each.id == new_upgrade.id:
+			upgrade = each
+			break
+	if upgrade != null:
+		upgrade.add_to_count()
+		print("Increased count of upgrade %s to %s." % [upgrade.id, upgrade.count])
+	else:
+		upgrade = new_upgrade.duplicate(true)
+		upgrade.setup_totals()
+		active_run_upgrades.append(upgrade)
+		print("Added upgrade ", upgrade.id)
 
 
 func _get_value_from_meta_upgrades(_variable_name:StringName = "") -> float:
@@ -113,6 +131,11 @@ func _get_value_from_meta_upgrades(_variable_name:StringName = "") -> float:
 	return 0.0
 
 
-func _get_value_from_run_upgrades(_variable_name:StringName = "") -> float:
-	# TODO: make this search all active RUN upgrades for all instances of the variable and send them all back as one
-	return 0.0
+func _get_value_from_run_upgrades(variable_name:StringName = "") -> float:
+	if active_run_upgrades.is_empty():
+		return 0.0
+	
+	var result:float = 0.0
+	for each in active_run_upgrades:
+		result += each.get_variable(variable_name)
+	return result

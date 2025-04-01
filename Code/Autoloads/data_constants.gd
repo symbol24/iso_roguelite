@@ -22,6 +22,7 @@ const OBJECTIVEARROW:String = "uid://cj55yovp557qi"
 
 # Characters
 const MAXCOMBOWAITTIME:float = 5.0
+const LOGVARMAX:float = 40.0
 
 # Enemies
 const ENEMY_UPGRADE_PER_LEVEL:float = 0.1
